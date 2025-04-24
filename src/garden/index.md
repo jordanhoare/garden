@@ -1,7 +1,6 @@
 ---
-
-## title: "Second Brain"
-
+title: Second Brain
+---
 # Welcome to My Second Brain
 
 This digital garden represents the interconnected collection of my thoughts, notes, and ideas across software development, philosophy, and personal reflections.
