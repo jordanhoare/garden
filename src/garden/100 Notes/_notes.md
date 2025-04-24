@@ -1,7 +1,6 @@
 ---
-
-## title: "Notes"
-
+title: Notes
+---
 # Notes
 
 This is my collection of atomic, interconnected notes following the [[zettelkasten]] methodology. Each note represents a single idea that can be linked to others.

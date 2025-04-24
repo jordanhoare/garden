@@ -1,7 +1,6 @@
 ---
-
-## title: "Journal"
-
+title: Journal
+---
 # Journal
 
 This is where I capture daily reflections, shower thoughts, and evolving ideas that haven't yet crystallized into formal notes.

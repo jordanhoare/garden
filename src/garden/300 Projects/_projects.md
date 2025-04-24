@@ -1,7 +1,6 @@
 ---
-
-## title: "Projects"
-
+title: Projects
+---
 # Projects
 
 This section contains ongoing and completed projects, both professional and personal. Each project has its own set of notes, reflections, and resources.
