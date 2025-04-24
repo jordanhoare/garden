@@ -32,9 +32,6 @@ export default {
     explorer: {
       title: "탐색기",
     },
-    footer: {
-      createdWith: "Created with",
-    },
     graph: {
       title: "그래프 뷰",
     },
