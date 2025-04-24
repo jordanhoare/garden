@@ -5,6 +5,6 @@
   "baseBranches": ["master"],
   "extends": [
       "config:recommended",
-      "github>tibia-oce/second-brain//.github/renovate/auto-merge.json"
+      "github>jordanhoare/second-brain//.github/renovate/auto-merge.json"
   ]
 }
