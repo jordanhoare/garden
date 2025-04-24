@@ -24,6 +24,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Create content directory
+        run: |
+          mkdir -p src/quartz/content
+      - name: Copy content
+        run: |
+          cp -r src/garden/* src/quartz/content/
       - name: Install Dependencies
         run: |
           cd src/quartz
