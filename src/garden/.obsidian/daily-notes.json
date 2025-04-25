@@ -1,3 +1,5 @@
 {
-  "autorun": true
+  "autorun": false,
+  "template": "900 Templates/Daily Notes Template",
+  "folder": "200 Journal"
 }

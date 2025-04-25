@@ -145,3 +145,4 @@ private/
 .replit
 replit.nix
 src/garden/.obsidian/workspace.json
+src/garden/.obsidian/todoist-token
