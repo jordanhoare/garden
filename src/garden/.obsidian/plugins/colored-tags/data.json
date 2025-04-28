@@ -284,7 +284,13 @@
     "dailyquestions/spiritual": 1,
     "dailyquestions/relationship": 2,
     "dailyquestions/create": 3,
-    "dailyquestions/exercise": 4
+    "dailyquestions/exercise": 4,
+    "Zettelkasten": 96,
+    "PARA": 97,
+    "management": 98,
+    "fleeting": 99,
+    "literature": 100,
+    "reflections": 101
   },
   "_version": 3
 }
