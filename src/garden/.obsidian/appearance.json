@@ -1,5 +1,8 @@
 {
   "cssTheme": "Obsidianite",
   "accentColor": "",
-  "theme": "obsidian"
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "colored-sidebar-items"
+  ]
 }

@@ -20,12 +20,12 @@ My journal entries serve as:
 ```dataviewjs
 dv.table(["Date", "Summary"],
   dv.pages("\"200 Journal\"")
-    .where(p => !p.file.name.includes("_journal"))  // Exclude the _journal file
+    .where(p => !p.file.name.includes("_journal"))
     .sort(p => p.file.cday, 'desc')
     .limit(5)
     .map(p => [
       p.file.link,
-      p.file.frontmatter.summary || "No summary available"
+      p.file.frontmatter.description || "No summary available"
     ])
 )
 ```
