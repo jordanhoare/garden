@@ -5,15 +5,16 @@
     "fontSize": 16,
     "emojiStyle": "native",
     "iconColor": null,
-    "recentlyUsedIcons": [
-      "🖋",
-      "✏",
-      "📸",
-      "💰",
-      "📖"
-    ],
+    "recentlyUsedIcons": [],
     "recentlyUsedIconsSize": 5,
-    "rules": [],
+    "rules": [
+      {
+        "rule": "- Maps of Content",
+        "icon": "LiArchive",
+        "for": "everything",
+        "order": 0
+      }
+    ],
     "extraMargin": {
       "top": 0,
       "right": 4,
@@ -22,27 +23,16 @@
     },
     "iconInTabsEnabled": false,
     "iconInTitleEnabled": false,
+    "iconInTitlePosition": "above",
     "iconInFrontmatterEnabled": false,
-    "iconsBackgroundCheckEnabled": true,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": false,
     "iconsInNotesEnabled": true,
     "iconsInLinksEnabled": true,
     "iconIdentifier": ":",
-    "iconInTitlePosition": "above",
-    "iconInFrontmatterFieldName": "icon",
-    "iconColorInFrontmatterFieldName": "iconColor",
-    "debugMode": false,
     "lucideIconPackType": "native",
+    "debugMode": false,
     "useInternalPlugins": false
-  },
-  "Personal": "LiUserRoundCog",
-  "Journal": "📖",
-  "z_Assets": "LiArchive",
-  "Blue": "🚠",
-  "Technical": "👨‍💻",
-  "Persoanl": "🏌",
-  "Z_assets": "🌦",
-  "Z_pdfs": "🔖",
-  "Business": "💰",
-  "Vlog": "📸",
-  "Blog": "🖋"
+  }
 }

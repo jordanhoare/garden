@@ -284,8 +284,7 @@
     "dailyquestions/spiritual": 1,
     "dailyquestions/relationship": 2,
     "dailyquestions/create": 3,
-    "dailyquestions/exercise": 4,
-    "Meta": 96
+    "dailyquestions/exercise": 4
   },
   "_version": 3
 }

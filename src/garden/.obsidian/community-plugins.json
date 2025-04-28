@@ -3,7 +3,6 @@
   "tag-wrangler",
   "omnisearch",
   "obsidian-importer",
-  "obsidian-icon-folder",
   "file-explorer-plus",
   "file-explorer-note-count",
   "obsidian-file-color",
@@ -12,5 +11,6 @@
   "code-styler",
   "calendar",
   "ninja-cursor",
-  "cmdr"
+  "cmdr",
+  "obsidian-icon-folder"
 ]
