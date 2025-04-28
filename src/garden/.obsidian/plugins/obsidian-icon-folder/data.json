@@ -9,10 +9,70 @@
     "recentlyUsedIconsSize": 5,
     "rules": [
       {
-        "rule": "- Maps of Content",
-        "icon": "LiArchive",
-        "for": "everything",
+        "rule": " - Maps of Content",
+        "icon": "BoBxGlobeAlt",
+        "for": "folders",
         "order": 0
+      },
+      {
+        "rule": " - Projects",
+        "icon": "BoBxsPen",
+        "for": "folders",
+        "order": 1,
+        "useFilePath": true
+      },
+      {
+        "rule": " - Areas",
+        "icon": "BoBxsPackage",
+        "for": "folders",
+        "order": 2,
+        "useFilePath": true
+      },
+      {
+        "rule": " - Resources",
+        "icon": "BoBxsBook",
+        "for": "folders",
+        "order": 3,
+        "useFilePath": true
+      },
+      {
+        "rule": " - Fleeting",
+        "icon": "BoBxsPencil",
+        "for": "folders",
+        "order": 4,
+        "useFilePath": true
+      },
+      {
+        "rule": "- Journal",
+        "icon": "BoBxCalendarEvent",
+        "for": "folders",
+        "order": 5,
+        "useFilePath": true
+      },
+      {
+        "rule": "- Meta",
+        "icon": "BoBxSelection",
+        "for": "folders",
+        "order": 6,
+        "useFilePath": false
+      },
+      {
+        "rule": "- Permanent",
+        "icon": "BoBxsFile",
+        "for": "everything",
+        "order": 8
+      },
+      {
+        "rule": "- Archives",
+        "icon": "BoBxsArchive",
+        "for": "folders",
+        "order": 9
+      },
+      {
+        "rule": " - Essays",
+        "icon": "LiNotebookText",
+        "for": "everything",
+        "order": 10
       }
     ],
     "extraMargin": {
