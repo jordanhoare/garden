@@ -1,4 +1,1 @@
----
-title: Maps of Content
-permalink: /
----
+# Maps of Content

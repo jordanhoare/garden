@@ -35,3 +35,8 @@ The repository is open source and [available on GitHub](https://github.com/jorda
 > "The notes are not a record of my thinking process. They are my thinking process." - Richard Feynman
 
 _Last updated: April 2025_
+
+---
+
+
+![[_home]]
