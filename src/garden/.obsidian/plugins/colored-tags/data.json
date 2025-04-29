@@ -290,7 +290,16 @@
     "management": 98,
     "fleeting": 99,
     "literature": 100,
-    "reflections": 101
+    "reflections": 101,
+    "relationship": 102,
+    "dating": 103,
+    "love": 104,
+    "partner": 105,
+    "personalvalues": 106,
+    "corevalues": 107,
+    "self-knowledge": 108,
+    "identity": 109,
+    "character": 110
   },
   "_version": 3
 }
