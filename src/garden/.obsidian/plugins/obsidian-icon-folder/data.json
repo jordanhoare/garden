@@ -54,13 +54,14 @@
         "icon": "BoBxSelection",
         "for": "folders",
         "order": 6,
-        "useFilePath": false
+        "useFilePath": true
       },
       {
         "rule": "- Permanent",
         "icon": "BoBxsFile",
         "for": "everything",
-        "order": 8
+        "order": 8,
+        "useFilePath": true
       },
       {
         "rule": "- Archives",

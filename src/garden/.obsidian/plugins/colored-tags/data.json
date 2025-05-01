@@ -321,7 +321,26 @@
     "control-flow-graph": 129,
     "machine-code": 130,
     "Context-managers": 131,
-    "Context-Variables": 132
+    "Context-Variables": 132,
+    "homelabbing": 133,
+    "python": 134,
+    "typescript": 135,
+    "high-level": 136,
+    "bootstrapping": 137,
+    "aws": 138,
+    "gcp": 139,
+    "software-as-a-service": 140,
+    "packaging": 141,
+    "kafka": 142,
+    "pyspark": 143,
+    "baremetal": 144,
+    "bootstrap": 145,
+    "first-principles": 146,
+    "technology": 147,
+    "Schopenhauer": 148,
+    "CPython": 149,
+    "abstractions": 150,
+    "personal-project": 151
   },
   "_version": 3
 }

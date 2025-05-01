@@ -7,23 +7,11 @@ This section contains ongoing and completed projects, both professional and pers
 
 ## Active Projects
 
-### Second Brain Development
-
-- [[second-brain-architecture]] - Design decisions for this knowledge system
-
-### Software Development
-
-- TODO
-
-### Personal Research
-
-- TODO
-
-## Completed Projects
-
-### Technical
-
-- TODO
+- [[sb - Second Brain]]: design decisions for my writing, note taking and knowledge system
+- [[tibia - Mythbound]]: 
+- [[tibia - Aincrad]]: 
+- [[lab - Homelab]]: 
+- [[tb - Dotfiles]]: 
 
 ## Project Methodology
 
