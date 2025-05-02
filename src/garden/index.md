@@ -2,9 +2,7 @@
 title: Second Brain
 ---
 > [!warning] Disclaimer
->The views, opinions, and thoughts expressed on this site are strictly my own personal reflections and expressly do not represent the official position, policies, or views of employer, or any affiliated organisation(s). 
->
-All references to public data or policies are based solely on publicly available information and reflect my personal interpretation as a private citizen. This digital garden documents my personal intellectual exploration only and maintains strict separation from my professional responsibilities.
+>The views, opinions, and thoughts expressed on this site are strictly my own personal reflections and expressly do not represent the official position, policies, or views of employer, or any affiliated organisation(s). All references to public data or policies are based solely on publicly available information and reflect my personal interpretation as a private citizen. This digital garden documents my personal intellectual exploration only and maintains strict separation from my professional responsibilities.
 
 # Welcome to My Second Brain
 
