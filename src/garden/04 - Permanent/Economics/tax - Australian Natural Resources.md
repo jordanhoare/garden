@@ -1,11 +1,11 @@
-## 🇳🇴 Norway's Oil and Gas Sector
+## Norway's Oil and Gas Sector
 
 - In 2023, the combined production value of oil and gas extraction and related services on the Norwegian Continental Shelf was approximately NOK 1,560 billion. After accounting for intermediate consumption (operating costs) of about NOK 187 billion, the estimated **gross operating profit stood at NOK 1,373 billion** (~A$200 billion). [(source)](https://www.ssb.no/en/energi-og-industri/olje-og-gass/statistikk/olje-og-gassutvinning-og-utvinningstjenester/articles/lower-revenues-and-higher-costs-on-the-norwegian-continental-shelf-in-2023)
 - The **Norwegian government collected NOK 474 billion in petroleum taxes and received NOK 355 billion from dividends** and withdrawals related to state ownership in petroleum activities, totalling NOK 829 billion (~A$120 billion) in petroleum revenues for 2023. [(source)](https://www.ssb.no/en/offentlig-sektor/offentlig-forvaltning/statistikk/offentlig-forvaltnings-inntekter-og-utgifter/articles-for-general-government-revenue-and-expenditure/petroleum-revenues-and-surplus-down)
 - The **government maintains significant ownership in the oil and gas sector** through entities like Equinor and the [[sdfi - State's Direct Financial Interest]]], allowing direct participation in profits.
 - Revenues from taxation and ownership stakes are funneled into the [[gpfg - Government Pension Fund Global]], serving as a **financial buffer for future generations.**
 
-## 🇦🇺 Australia's Mining Sector
+## Australia's Mining Sector
 
 - In 2022–23, Australia's mining and energy exports reached a record **A$455 billion**. ([source](https://minerals.org.au/resources/mining-delivers-record-455-billion-in-export-revenue-in-fy23))
 - The mining sector recorded **gross operating profits of ~A$295 billion** in 2022. ([source](https://australiainstitute.org.au/wp-content/uploads/2023/04/Profits-and-Prices-Mining-and-NonMining.pdf?utm_source=chatgpt.com))
