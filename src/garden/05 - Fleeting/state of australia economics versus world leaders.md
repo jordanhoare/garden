@@ -1,0 +1,3 @@
+- Australia is not in crisis, yet - given its skilled workforce, resources and fiscal headroom.
+- It could have converted its advantages into stronger productivity, affordability and innovation outcomes though
+- Without any noticeable bipartisan reform wave on the scale of the 1990s competition agenda, Australia likely risks more gradual erosion of its relative standing against peers such as Denmark, Germany and Canada over the coming decade..

@@ -17,15 +17,4 @@ My journal entries serve as:
 - A record of my evolving thinking process
 
 ## Recent Entries
-```dataviewjs
-dv.table(["Date", "Summary"],
-  dv.pages("\"200 Journal\"")
-    .where(p => !p.file.name.includes("_journal"))
-    .sort(p => p.file.cday, 'desc')
-    .limit(5)
-    .map(p => [
-      p.file.link,
-      p.file.frontmatter.description || "No summary available"
-    ])
-)
-```
+TODO
