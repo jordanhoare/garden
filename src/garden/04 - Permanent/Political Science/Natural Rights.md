@@ -1,0 +1,1 @@
+Natural rights theory serves as a foundation for determining legitimate political authority, justifying resistance to tyranny, and establishing proper limits of government power. [[John Locke]]'s conception of natural rights to life, #liberty, and property directly shaped constitutional [[Democracy]] and [[Liberalism]] political thought.
