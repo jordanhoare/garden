@@ -29,7 +29,7 @@ jobs:
           mkdir -p src/quartz/content
       - name: Copy content
         run: |
-          rsync -av --exclude='content/09 - Meta/Templates' src/garden/ src/quartz/content/
+          rsync -av --exclude='09 - Meta/Templates' src/garden/ src/quartz/content/
       - name: Install Dependencies
         run: |
           cd src/quartz
