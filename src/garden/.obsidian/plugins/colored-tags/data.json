@@ -433,7 +433,21 @@
     "sovereignty": 241,
     "minarchism": 242,
     "night-watch-state": 243,
-    "anarcho-capitalism": 244
+    "anarcho-capitalism": 244,
+    "leetcode": 245,
+    "leetcode/problemarray": 1,
+    "leetcode/problemhash-table": 2,
+    "leetcode/problemsorting": 3,
+    "programming": 246,
+    "programming/practice": 1,
+    "leetcode/problem": 4,
+    "your": 247,
+    "your/tags": 1,
+    "array": 248,
+    "hash-table": 249,
+    "sorting": 250,
+    "dsa": 251,
+    "data-structures": 252
   },
   "_version": 3
 }
