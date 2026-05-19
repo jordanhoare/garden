@@ -1,0 +1,51 @@
+default: true
+
+# Line length — Obsidian doesn't hard-wrap lines
+MD013: false
+
+# First line must be a heading — frontmatter precedes headings
+MD041: false
+
+# Inline HTML — occasionally used in notes
+MD033: false
+
+# Bare URLs — common in fleeting/resource notes
+MD034: false
+
+# Blank line inside blockquote — Obsidian callouts (> [!note]) trigger this
+MD028: false
+
+# Emphasis style — Obsidian uses * and _ interchangeably
+MD049: false
+MD050: false
+
+# Duplicate heading text — valid in Zettelkasten (e.g. repeated "Summary" sections)
+MD024: false
+
+# Trailing punctuation in headings — e.g. "Why?" is intentional
+MD026: false
+
+# Multiple H1s — frontmatter title + body H1 is valid in Obsidian
+MD025: false
+
+# Unlabelled fenced code blocks — common in quick notes and fleeting captures
+MD040: false
+
+# Heading style (setext vs atx) — both are valid, don't auto-convert existing notes
+MD003: false
+
+# Heading increment — skipping levels is common in informal note structure
+MD001: false
+
+# Emphasis used as informal heading — bold text as section label is a common note pattern
+MD036: false
+
+# Image alt text — Obsidian wikilink images (![[file.png]]) have no alt text
+MD045: false
+
+# Table pipe style and column count — notes often have informal/partial tables
+MD055: false
+MD056: false
+
+# Ordered list prefix style — Obsidian renumbers automatically, style doesn't matter
+MD029: false

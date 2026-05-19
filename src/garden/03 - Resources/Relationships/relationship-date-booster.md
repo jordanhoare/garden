@@ -1,4 +1,5 @@
-#relationship #dating #love #partner
+# relationship #dating #love #partner
+
 ## POP QUIZ (20 min)
 
 - What's one of my biggest pet peeves?
@@ -27,6 +28,7 @@
 ## BONUS ACTIVITY (2 min)
 
 Choose one secret gesture to do for your partner this week:
+
 - Pick out a romantic gift for your partner this week.
 - Make your partner their favorite meal or favorite snack.
 - Leave little notes with things you appreciate about them.

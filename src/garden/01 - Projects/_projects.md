@@ -8,10 +8,10 @@ This section contains ongoing and completed projects, both professional and pers
 ## Active Projects
 
 - [[sb - Second Brain]]: design decisions for my writing, note taking and knowledge system
-- [[tibia - Mythbound]]: 
-- [[tibia - Aincrad]]: 
-- [[lab - Homelab]]: 
-- [[tb - Dotfiles]]: 
+- [[tibia - Mythbound]]:
+- [[tibia - Aincrad]]:
+- [[01 - Projects/Homelab/lab - Homelab]]:
+- [[tb - Dotfiles]]:
 
 ## Project Methodology
 

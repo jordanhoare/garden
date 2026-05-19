@@ -6,6 +6,20 @@
       "type": "Macro",
       "command": true,
       "macroId": "1d4b5525-12ac-443a-8233-2f267df75022"
+    },
+    {
+      "id": "245753a8-d8ca-491c-bbe8-d26516fa1269",
+      "name": "📚 Algorithm",
+      "type": "Macro",
+      "command": true,
+      "macroId": "e96741e4-1adc-4c55-816e-0608dab832c9"
+    },
+    {
+      "id": "95ddba93-cf80-4def-9ab3-07310b008a01",
+      "name": "📚 Data Structure",
+      "type": "Macro",
+      "command": true,
+      "macroId": "1c2db5cb-9110-4954-a4ca-a7d55da2ff74"
     }
   ],
   "macros": [
@@ -54,6 +68,90 @@
             "openFile": true,
             "openFileInMode": "default",
             "fileExistsMode": "Increment the file name",
+            "setFileExistsBehavior": true
+          }
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "📚 Algorithm",
+      "id": "e96741e4-1adc-4c55-816e-0608dab832c9",
+      "commands": [
+        {
+          "name": "Template",
+          "type": "NestedChoice",
+          "id": "3c8a3c1e-7719-43e6-9332-8829887ce4fa",
+          "choice": {
+            "id": "aff52f35-ab35-480c-bec1-0437d2d3ca5f",
+            "name": "Template",
+            "type": "Template",
+            "command": false,
+            "templatePath": "09 - Meta/Templates/(TEMPLATE) Algorithm.md",
+            "fileNameFormat": {
+              "enabled": false,
+              "format": "{{name}}"
+            },
+            "folder": {
+              "enabled": true,
+              "folders": [
+                "02 - Areas/Data Structures & Algorithms/Algorithms"
+              ],
+              "chooseWhenCreatingNote": false,
+              "createInSameFolderAsActiveFile": false,
+              "chooseFromSubfolders": false
+            },
+            "appendLink": false,
+            "openFileInNewTab": {
+              "enabled": false,
+              "direction": "vertical",
+              "focus": true
+            },
+            "openFile": true,
+            "openFileInMode": "default",
+            "fileExistsMode": "Nothing",
+            "setFileExistsBehavior": true
+          }
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "📚 Data Structure",
+      "id": "1c2db5cb-9110-4954-a4ca-a7d55da2ff74",
+      "commands": [
+        {
+          "name": "📚 Data Structure",
+          "type": "NestedChoice",
+          "id": "62b56594-a4c1-494a-9156-188260d7b39b",
+          "choice": {
+            "id": "ccfd80c6-b001-402e-a683-4050b9700a2a",
+            "name": "📚 Data Structure",
+            "type": "Template",
+            "command": false,
+            "templatePath": "09 - Meta/Templates/(TEMPLATE) Data Structure.md",
+            "fileNameFormat": {
+              "enabled": false,
+              "format": ""
+            },
+            "folder": {
+              "enabled": true,
+              "folders": [
+                "02 - Areas/Data Structures & Algorithms/Data Structures"
+              ],
+              "chooseWhenCreatingNote": false,
+              "createInSameFolderAsActiveFile": false,
+              "chooseFromSubfolders": false
+            },
+            "appendLink": false,
+            "openFileInNewTab": {
+              "enabled": false,
+              "direction": "vertical",
+              "focus": true
+            },
+            "openFile": true,
+            "openFileInMode": "default",
+            "fileExistsMode": "Nothing",
             "setFileExistsBehavior": true
           }
         }

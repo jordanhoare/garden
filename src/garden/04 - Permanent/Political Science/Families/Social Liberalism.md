@@ -3,6 +3,7 @@ A branch of #liberalism that emerged in the late 19th and early 20th centuries i
 Social liberalism provided the philosophical foundation for welfare state policies in many Western democracies during the 20th century. It attempts to reconcile liberal commitments to individual freedom with social democratic concerns for economic justice and equality.
 
 ## Principles:
+
 - Positive conception of liberty (freedom to develop one's capacities)
 - Recognition that poverty and inequality can restrict meaningful freedom
 - Support for social welfare programs, public education, healthcare access
@@ -10,4 +11,5 @@ Social liberalism provided the philosophical foundation for welfare state polici
 - Commitment to equality of opportunity
 
 ## Related Notes
+
 - [[Liberalism]]

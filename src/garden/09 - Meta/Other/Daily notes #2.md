@@ -1,11 +1,13 @@
 
 ### Todoist
+
 ```todoist
 filter: "today | overdue"
 autorefresh: 120
 ```
 
 ### Memento Mori
+
 ```dataviewjs
 const today = dv.date('2025-04-25')
 const endOfYear = {
@@ -39,6 +41,7 @@ dv.span(`${progress("lifespan")}
 ```
 
 ### Habits
+
 - [ ] Writing
 - [ ] Reading
 - [ ] Meditation
@@ -52,4 +55,3 @@ Yesterday, did I do my best to...
 - Love my partner? #dailyquestions/relationship :
 - Create something? #dailyquestions/create:
 - Exercise? #dailyquestions/exercise:
-

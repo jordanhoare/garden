@@ -1,7 +1,8 @@
 
-One‑stop index for ideological **dimensions**, **families**, **ethical systems**, key **thinkers**, and **country landscapes**.  
+One‑stop index for ideological **dimensions**, **families**, **ethical systems**, key **thinkers**, and **country landscapes**.
 
-## 1. Ideological Dimensions  
+## 1. Ideological Dimensions
+
 | note                                                                                               | tag                  |
 | -------------------------------------------------------------------------------------------------- | -------------------- |
 | [[04 - Permanent/Political Science/Dimensions/Economic Left‑Right]]                        | #economic            |
@@ -15,9 +16,10 @@ One‑stop index for ideological **dimensions**, **families**, **ethical systems
 | [[04 - Permanent/Political Science/Dimensions/Urban - Rural]]                              | #urban-rural         |
 |                                                                                                    |                      |
 
-## 2. Ideological Families  
+## 2. Ideological Families
 
-#### 2.1 Classical Ideologies  
+#### 2.1 Classical Ideologies
+
 | note                                                                      | tag                 |
 | ------------------------------------------------------------------------- | ------------------- |
 | [[04 - Permanent/Political Science/Families/Liberalism]]          | #liberalism         |
@@ -29,7 +31,8 @@ One‑stop index for ideological **dimensions**, **families**, **ethical systems
 | [[04 - Permanent/Political Science/Families/Fascism]]             | #fascism            |
 |                                                                           |                     |
 
-#### 2.2 Derived / Hybrid Ideologies  
+#### 2.2 Derived / Hybrid Ideologies
+
 | note                                                                 | tag                     |
 | -------------------------------------------------------------------- | ----------------------- |
 | [[04 - Permanent/Political Science/Families/Social Liberalism]]      | #social-liberalism      |
@@ -44,8 +47,8 @@ One‑stop index for ideological **dimensions**, **families**, **ethical systems
 | [[04 - Permanent/Political Science/Families/Centrism - Third Way]]   | #centrism               |
 |                                                                      |                         |
 
+## 3. Ethical Systems
 
-## 3. Ethical Systems  
 | note                                                                                        | tag                               |
 | ------------------------------------------------------------------------------------------- | --------------------------------- |
 | [[04 - Permanent/Political Science/Ethical Systems/Utilitarianism]]                 | #utilitarianism                   |
@@ -58,8 +61,8 @@ One‑stop index for ideological **dimensions**, **families**, **ethical systems
 | [[04 - Permanent/Political Science/Ethical Systems/Egalitarianism]]                 | #egalitarianism                   |
 |                                                                                             |                                   |
 
+## 4. Thinkers & Canonical Texts
 
-## 4. Thinkers & Canonical Texts  
 | note                                                                | tag                                                  |
 | ------------------------------------------------------------------- | ---------------------------------------------------- |
 | [[04 - Permanent/Political Science/Thinkers/Karl Marx]]             | #marxism #communism #socialism                       |
@@ -79,8 +82,8 @@ One‑stop index for ideological **dimensions**, **families**, **ethical systems
 | [[04 - Permanent/Political Science/Thinkers/Max Weber]]             | #sociology #bureaucracy                              |
 | [[04 - Permanent/Political Science/Thinkers/John Locke]]            | #liberalism#claissical-liberalism                    |
 
+## 5. Comparative Country Landscapes
 
-## 5. Comparative Country Landscapes  
 | note                                                                           | tag        |
 | ------------------------------------------------------------------------------ | ---------- |
 | [[04 - Permanent/Political Science/Countries/Australia Ideological Landscape]] | #australia |

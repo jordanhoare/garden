@@ -1,0 +1,500 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font-sans);}
+
+.summary-bar{
+  background:linear-gradient(135deg, var(--color-background-secondary) 0%, var(--color-background-primary) 100%);
+  border:0.5px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-lg);
+  padding:14px 18px;
+  margin-bottom:1.5rem;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:14px;
+  font-size:12px;
+}
+.sb-label{font-weight:600;color:var(--color-text-primary);font-size:13px;}
+.sb-divider{width:1px;height:18px;background:var(--color-border-tertiary);}
+.sb-item{color:var(--color-text-secondary);}
+.sb-item strong{color:var(--color-text-primary);font-weight:600;}
+.sb-coaching{color:#7C6FCF;font-weight:500;}
+
+.tabs{
+  display:flex;
+  gap:4px;
+  flex-wrap:wrap;
+  margin-bottom:1.25rem;
+  padding:4px;
+  background:var(--color-background-secondary);
+  border-radius:var(--border-radius-lg);
+  border:0.5px solid var(--color-border-tertiary);
+}
+.tab{
+  flex:1;
+  min-width:90px;
+  padding:9px 10px;
+  border-radius:var(--border-radius-md);
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  color:var(--color-text-secondary);
+  font-family:var(--font-sans);
+  text-align:center;
+  transition:all 0.15s;
+}
+.tab:hover{background:var(--color-background-primary);}
+.tab.active{
+  background:var(--color-background-primary);
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  color:var(--color-text-primary);
+}
+.tab-day{display:block;font-size:13px;font-weight:600;letter-spacing:-0.01em;}
+.tab-sub{display:block;font-size:10px;color:var(--color-text-tertiary);margin-top:2px;font-weight:500;}
+.tab-opt-flag{display:block;font-size:10px;color:#7C6FCF;margin-top:2px;font-weight:500;}
+
+.session-card{
+  background:var(--color-background-primary);
+  border:0.5px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-xl);
+  padding:1.5rem;
+}
+
+.sh{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:1rem;
+  padding-bottom:1rem;
+  margin-bottom:1.25rem;
+  border-bottom:0.5px solid var(--color-border-tertiary);
+}
+.st{font-size:20px;font-weight:600;color:var(--color-text-primary);letter-spacing:-0.01em;}
+.sm{font-size:13px;color:var(--color-text-secondary);margin-top:4px;}
+.chips{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;max-width:55%;}
+.chip{font-size:11px;padding:4px 10px;border-radius:99px;font-weight:500;white-space:nowrap;}
+.ct{background:#E1F5EE;color:#085041;}.cb{background:#E6F1FB;color:#0C447C;}.ca{background:#FAEEDA;color:#633806;}.cg{background:#F1EFE8;color:#444441;}.cc{background:#FAECE7;color:#712B13;}.cp{background:#EEEDFE;color:#3C3489;}.corange{background:#FEF3E2;color:#7A3F00;}
+
+.timeline{
+  display:flex;
+  height:8px;
+  border-radius:99px;
+  overflow:hidden;
+  margin-bottom:1.5rem;
+  gap:2px;
+}
+.tseg{border-radius:2px;}
+
+.blocks{display:flex;flex-direction:column;gap:8px;}
+
+.block{
+  border:0.5px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-lg);
+  overflow:hidden;
+  transition:border-color 0.15s;
+}
+.block:hover{border-color:var(--color-border-secondary);}
+.bh{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 16px;
+  cursor:pointer;
+  user-select:none;
+  transition:background 0.1s;
+}
+.bh:hover{background:var(--color-background-secondary);}
+.badge{
+  font-size:9.5px;
+  font-weight:600;
+  padding:3px 9px;
+  border-radius:99px;
+  white-space:nowrap;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+.bfixed{background:#E1F5EE;color:#085041;}.bfocus{background:#E6F1FB;color:#0C447C;}.bperf{background:#FAEEDA;color:#633806;}.bmetric{background:#EAF3DE;color:#27500A;}.bwarm{background:#F1EFE8;color:#444441;}.bgame{background:#FAECE7;color:#712B13;}.brange{background:#FEF3E2;color:#7A3F00;}.bopt{background:#F3EFFD;color:#5B4EA8;}.bclinic{background:#E0F0E8;color:#0F5132;}
+
+.btitle{font-size:14px;font-weight:500;color:var(--color-text-primary);flex:1;letter-spacing:-0.005em;}
+.bdur{font-size:12px;color:var(--color-text-tertiary);white-space:nowrap;font-weight:500;}
+.bchev{font-size:10px;color:var(--color-text-tertiary);transition:transform 0.2s;flex-shrink:0;}
+.bchev.open{transform:rotate(180deg);}
+
+.bb{
+  padding:0 16px;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.25s ease, padding 0.25s ease;
+}
+.bb.open{
+  padding:14px 16px 16px;
+  max-height:3000px;
+  border-top:0.5px solid var(--color-border-tertiary);
+}
+
+.notebox,.optbox,.fbox,.gbox{
+  border-radius:var(--border-radius-md);
+  padding:11px 14px;
+  font-size:12.5px;
+  line-height:1.55;
+  margin-bottom:14px;
+}
+.notebox{background:var(--color-background-warning);border:0.5px solid var(--color-border-warning);color:var(--color-text-warning);}
+.optbox{background:#F3EFFD;border:0.5px solid #C4B8F0;color:#4A3D9A;}
+.fbox{background:var(--color-background-info);border:0.5px solid var(--color-border-info);color:var(--color-text-info);}
+.gbox{background:var(--color-background-danger);border:0.5px solid var(--color-border-danger);color:var(--color-text-danger);}
+
+.box-label{
+  font-size:10px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin-bottom:5px;
+  opacity:0.8;
+}
+
+.ds{margin-top:14px;}
+.ds:first-child{margin-top:0;}
+.dl{
+  font-size:10.5px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  color:var(--color-text-tertiary);
+  margin-bottom:7px;
+}
+.dlist{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.di{
+  font-size:13px;
+  color:var(--color-text-primary);
+  line-height:1.55;
+  display:flex;
+  gap:9px;
+  align-items:flex-start;
+}
+.dot{
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:var(--color-border-secondary);
+  margin-top:7px;
+  flex-shrink:0;
+}
+
+.mgrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:8px;
+  margin-top:6px;
+}
+.mc{
+  background:var(--color-background-secondary);
+  border-radius:var(--border-radius-md);
+  padding:10px 13px;
+  border:0.5px solid var(--color-border-tertiary);
+}
+.ml{font-size:10.5px;color:var(--color-text-tertiary);margin-bottom:3px;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;}
+.mv{font-size:15px;font-weight:600;color:var(--color-text-primary);letter-spacing:-0.01em;}
+.mn{font-size:11px;color:var(--color-text-secondary);margin-top:2px;}
+
+@media (max-width: 640px){
+  .chips{max-width:100%;justify-content:flex-start;margin-top:8px;}
+  .sh{flex-direction:column;}
+}
+</style>
+
+<div style="padding:0;">
+
+<div class="summary-bar">
+  <span class="sb-label">Plan summary</span>
+  <span class="sb-divider"></span>
+  <span class="sb-item">Pin High Lifestyle <strong>$175/mo</strong></span>
+  <span class="sb-item">10 sim · 10 range · gym + WellPutt unlimited</span>
+  <span class="sb-divider"></span>
+  <span class="sb-item sb-coaching">Coaching: 1×/mo private + clinic quarterly</span>
+  <span class="sb-divider"></span>
+  <span class="sb-item">Total <strong>~$767/mo</strong></span>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" data-day="mon">
+    <span class="tab-day">Mon</span>
+    <span class="tab-sub">Pin High · 2.25h</span>
+  </button>
+  <button class="tab" data-day="tue">
+    <span class="tab-day">Tue</span>
+    <span class="tab-sub">Wembley · 2.4h</span>
+  </button>
+  <button class="tab" data-day="wed">
+    <span class="tab-day">Wed</span>
+    <span class="tab-sub">Wembley · 1.75h</span>
+  </button>
+  <button class="tab" data-day="thu">
+    <span class="tab-day">Thu</span>
+    <span class="tab-sub">Pin High · 2.25h</span>
+  </button>
+  <button class="tab" data-day="fri">
+    <span class="tab-day">Fri</span>
+    <span class="tab-sub">Pin High · 2.25h</span>
+  </button>
+  <button class="tab" data-day="flex">
+    <span class="tab-day">Sat/Sun</span>
+    <span class="tab-opt-flag">⚡ Flex</span>
+  </button>
+</div>
+
+<div class="session-card" id="sc"></div>
+
+</div>
+
+<script>
+const S={
+mon:{
+  title:"Sim (technical) + Push gym + WellPutt",
+  venue:"Pin High",time:"3:30–5:45pm · 2.25 hrs",
+  chips:[{l:"Sim 60 min",c:"cb"},{l:"Push gym 60 min",c:"cg"},{l:"WellPutt 15 min",c:"ct"}],
+  tbar:[{p:44,col:"#B5D4F4"},{p:44,col:"#D3D1C7"},{p:12,col:"#9FE1CB"}],
+  blocks:[
+    {badge:"fixed",bc:"bfixed",dur:"15 min",title:"Baseline — 7-iron data anchor",
+     note:"Fixed every Monday. Diagnostic only — do not try to fix anything. These 15 minutes make your weekly Trackman data meaningful over months.",
+     sections:[
+       {l:"Protocol",items:["15 balls with 7-iron, stock shot, zero active swing thoughts","Note club path, face-to-path gap, smash factor, dispersion after each shot","Compare to previous Monday — trending better or worse?"]},
+       {l:"Targets to track weekly",items:["Club path: trending toward 0° (current ~−5° to −8°)","Face-to-path gap: under ±4°","Smash factor: 1.40+ (baseline TBC session 1)","Dispersion width: under 30y now, target under 25y by month 12"]}
+     ]},
+    {badge:"focus",bc:"bfocus",dur:"20 min",title:"Coach-assigned drill — rotating monthly",
+     focusBox:{l:"This month's focus",t:"Placeholder — replace after lesson 1. One coach-prescribed drill only. Examples: path gate drill, shaft lean sequence, trail arm delivery. 20 minutes of deliberate repetition with Trackman active."},
+     sections:[
+       {l:"Structure",items:["10 min: standard drill execution — track path and face on Trackman","10 min: integrate into normal swing — same 7-iron, normal intent, same target","Glance at data every 3–4 shots, not every shot"]},
+       {l:"Rules",items:["One swing thought only — write it down before you start","Take 1 face-on video clip for coach review","If dispersion worsens for 15+ consecutive shots — stop, note it, flag for next lesson"]}
+     ]},
+    {badge:"mini-game",bc:"bgame",dur:"15 min",title:"Wedge scoring zone — 50–120y proximity work",
+     gameBox:{l:"Scoring zone application",t:"Apply Trackman data to proximity targets under light pressure. Compare Monday vs. Friday scores every week — if Friday is better, the week's drilling is transferring."},
+     sections:[
+       {l:"Game 1 — proximity ladder (8 min)",items:["4 targets: 50y, 70y, 90y, 110y — one shot each, repeat twice (8 shots total)","Call club + swing length before addressing the ball — commit first","Score: shots within 20-foot radius. Target: 5/8 by month 3.","Record score — compare to last Monday and Friday"]},
+       {l:"Game 2 — random proximity (7 min)",items:["7 shots from random distances 50–120y — call club/length before each","Track cumulative proximity in feet — competition against yourself","Note worst distance — prioritise it on Friday"]}
+     ]},
+    {badge:"performance",bc:"bperf",dur:"10 min",title:"Sim course play — 2–3 par 4s and 5s",
+     note:"End every sim session with real course pressure. Load the same course every Monday for direct week-on-week comparison.",
+     sections:[
+       {l:"Protocol",items:["2–3 holes — par 4s and 5s for full club variety","Full 5-second decision rule on every shot","No Trackman review mid-hole — feel only","Does the drill hold when thinking about the shot, not the swing?"]}
+     ]},
+    {badge:"targets",bc:"bmetric",dur:"",title:"Monday Trackman baseline metrics",
+     metrics:[{l:"7-iron club path",v:"±4° of 0°",n:"Current ~−5° to −8°"},{l:"Smash factor (7i)",v:"1.40+",n:"TBC session 1"},{l:"Dispersion width",v:"< 30y",n:"Target < 25y mo 12"},{l:"Proximity score",v:"5/8 shots",n:"20ft radius game 1"},{l:"Sim holes",v:"2–3 holes",n:"Same course each week"}]},
+    {badge:"wellputt",bc:"bwarm",dur:"15 min",title:"WellPutt — 3-foot circle drill",
+     note:"After gym. Highest ROI 15 minutes of the week. Non-negotiable.",
+     sections:[
+       {l:"3-foot circle drill",items:["8 balls at 3 feet, all angles around the cup","Make all 8 in a row — restart from zero on any miss","Track: how many restarts before completing it this week?"]},
+       {l:"Monthly progression",items:["Month 1: complete in under 12 min · Month 3: under 6 min · Month 6: under 3 min then extend to 4 feet"]}
+     ]}
+  ]
+},
+
+tue:{
+  title:"Play 9 holes (twilight)",
+  venue:"Wembley Golf Course",time:"3:30–5:55pm · 2.4 hrs",
+  chips:[{l:"Range warm-up 20 balls · 15 min",c:"corange"},{l:"Practice green 10 min",c:"ct"},{l:"Play 9 holes ~115 min",c:"cc"},{l:"Post-round 10 min",c:"cg"}],
+  tbar:[{p:11,col:"#FAC775"},{p:7,col:"#9FE1CB"},{p:75,col:"#F5C4B3"},{p:7,col:"#D3D1C7"}],
+  blocks:[
+    {badge:"warm-up",bc:"bwarm",dur:"15 min",title:"Range warm-up — 20-ball $8 bucket",
+     note:"Compact warm-up before twilight tee time. 20 balls is enough to find rhythm, not enough to fatigue. Build the same 8-ball sequence as you do at Pin High.",
+     sections:[
+       {l:"20-ball sequence",items:["3 × 54° chip from 20y — short game feel","3 × 9-iron at 70% — building tempo","4 × 9-iron at 85% — full swing rhythm","4 × 7-iron at 90% — stock shot shape","2 × hybrid at 85% — transition club","2 × driver at 80% — tempo only","2 × free balls — whatever feels right, end on a good shot"]}
+     ]},
+    {badge:"warm-up",bc:"bwarm",dur:"10 min",title:"Practice green — speed calibration",
+     sections:[
+       {l:"Protocol",items:["4 lag putts from 30+ feet — calibrate to today's green speed","4 putts from 6 feet — build confidence, not mechanics","2 putts from 3 feet — feel the make, walk to first tee positive"]}
+     ]},
+    {badge:"fixed",bc:"bfixed",dur:"~115 min",title:"Play 9 holes — Shot Scope active, full routine every shot",
+     note:"Tuesday is the TEST. The 5-second decision rule applies to every single shot without exception.",
+     sections:[
+       {l:"5-second decision rule — every shot",items:["What is the worst miss from here?","What is the smart target? (Center-of-green default unless 100% committed)","What is the exact yardage? (Check Shot Scope watch)","Am I fully committed? (If no — pick the safer option)"]},
+       {l:"Course management non-negotiables",items:["Driver only when trouble is not within 60y of your miss line","Attack pins only from clean lies inside 120m","Never attempt a hero recovery — pitch sideways if lie is awkward","Par 5 layups: lay up to a full-swing yardage you own"]},
+       {l:"Shot Scope tracking",items:["Confirm watch active and course loaded before hole 1","Verify shot count after each hole","Confirm putts before leaving each green"]}
+     ]},
+    {badge:"post-round",bc:"bperf",dur:"10 min",title:"Post-round review — car park before driving home",
+     sections:[
+       {l:"Immediately after the round",items:["Open Shot Scope — check putts, penalties, GIR","Identify 3 decisions that cost strokes — decisions, not swing errors","Identify 1 thing that worked — write it down","Set Wednesday's specific short-game focus based on what failed today"]}
+     ]},
+    {badge:"targets",bc:"bmetric",dur:"",title:"Shot Scope baseline targets",
+     metrics:[{l:"Putts per round",v:"≤34",n:"Target 30–32 mo 6"},{l:"3-putts",v:"≤2",n:"Target ≤1 mo 6"},{l:"Penalty strokes",v:"≤3",n:"Target ≤1 mo 12"},{l:"GIR %",v:"25%+",n:"Target 35%+ mo 6"},{l:"Up-and-down %",v:"30%+",n:"Target 40%+ mo 6"},{l:"Poor decisions",v:"≤3/round",n:"Post-round self-audit"}]}
+  ]
+},
+
+wed:{
+  title:"Short game on grass + Putting on greens",
+  venue:"Wembley Golf Course",time:"3:30–5:15pm · 1.75 hrs",
+  chips:[{l:"Short game 60 min",c:"cc"},{l:"Bunkers 15 min",c:"ca"},{l:"Wedge yardages (40m short game area) 15 min",c:"cb"},{l:"Putting on greens 15 min",c:"ct"}],
+  tbar:[{p:57,col:"#F5C4B3"},{p:14,col:"#FAC775"},{p:14,col:"#B5D4F4"},{p:15,col:"#9FE1CB"}],
+  blocks:[
+    {badge:"warm-up",bc:"bwarm",dur:"10 min",title:"Feel calibration — turf check + Tuesday debrief",
+     sections:[
+       {l:"Protocol",items:["10 chips from 15y with 54° — no target pressure, just feel for turf conditions","Notice: wet or dry? Long or short grass? Uphill or downhill prevalent?","Recall Tuesday's round — which chips/pitches failed? Start there."]}
+     ]},
+    {badge:"fixed",bc:"bfixed",dur:"50 min",title:"Chipping — 54° wedge, four-shot framework",
+     note:"Wednesday's chipping focus is directly informed by Tuesday's round. Address what specifically failed first, while it's fresh.",
+     sections:[
+       {l:"Shot 1 — standard chip (20 min)",items:["Setup: ball center, 65% weight forward, hands slightly ahead, narrow stance","Select landing spot first — always. Then execute.","10 chips from 15y then 10 from 25y — same landing spot each time","Target: clean ball-first contact on 8 of 10"]},
+       {l:"Shot 2 — low runner (15 min)",items:["Setup: ball back of center, hands more forward, 70% weight lead foot","Steeper descent — hands ahead at impact, no flip","10 chips from 15y — rollout visibly longer than Shot 1","Target: clearly lower trajectory every time"]},
+       {l:"Shot 3 — high soft (15 min)",items:["Setup: ball forward, face open 15–20° before gripping, open stance to compensate","Shallow sweep — full follow-through, never decelerate","10 chips from 12y — stops within 5 feet of landing spot","Target: apex visibly higher than Shot 1, minimal rollout"]}
+     ]},
+    {badge:"focus",bc:"bfocus",dur:"15 min",title:"Bunker practice — CBX4 54°, 14° bounce",
+     note:"Trust the 14° bounce — it slides through sand, not digs. Hit 2 inches behind the ball — let the bounce do the rest.",
+     sections:[
+       {l:"Line drill (6 min)",items:["Draw a line 2 inches behind a practice ball — swing to hit the LINE only","10 reps: count how many times club enters exactly at the line","Target: 8 of 10 at the line by month 3"]},
+       {l:"Standard shots (9 min)",items:["Open stance, open face, ball forward, feet dug in — aggressive through-swing, never decelerate","Vary target: 10y, 15y, 20y carry","Target: out every attempt — within 15 feet by month 3"]}
+     ]},
+    {badge:"fixed",bc:"bfixed",dur:"15 min",title:"Wedge yardages — 48° and 54° stock distances (up to 40m)",
+     note:"Sub-40m map built here. 40–120m handled by Trackman on Monday and Friday sims. Long-term wedge split: 48°/54°/60°.",
+     sections:[
+       {l:"Three-swing system",items:["Half swing (hip height): 5 balls with 54°, then 5 with 48° — average carry","Three-quarter swing (shoulder height): repeat for both clubs","Record all 4 distances in phone — 'wedge yardages' note","Goal: know all 4 to within ±3y by end of month 1"]}
+     ]},
+    {badge:"fixed",bc:"bfixed",dur:"15 min",title:"Putting on real grass — quick lag and confidence",
+     note:"Compressed putting block — main putting work happens at WellPutt Mon/Thu/Fri. This is your real-grass speed calibration.",
+     sections:[
+       {l:"Lag putting (10 min)",items:["3 × 30-foot · 3 × 40-foot · 2 × 50-foot — focus on stopping within 3 feet","Note: today's green speed compared to last Wednesday?"]},
+       {l:"3-foot confidence finish (5 min)",items:["5 × 3-foot putts with full pre-putt routine","End on makes — always"]}
+     ]},
+    {badge:"targets",bc:"bmetric",dur:"",title:"Wednesday baseline metrics",
+     metrics:[{l:"Chipping contact",v:"8/10 clean",n:"Ball-first, no chunks"},{l:"Bunker exit rate",v:"100%",n:"Every attempt out"},{l:"Bunker proximity",v:"< 20 feet",n:"< 15 ft by mo 3"},{l:"Wedge yardages",v:"4 known",n:"48° + 54°, half + 3/4"},{l:"Lag proximity",v:"< 5 feet avg",n:"30–50 foot range"}]}
+  ]
+},
+
+thu:{
+  title:"Range + WellPutt + Pull gym",
+  venue:"Pin High",time:"3:30–5:45pm · 2.25 hrs",
+  chips:[{l:"Range 30 min",c:"corange"},{l:"WellPutt 45 min",c:"ct"},{l:"Pull gym 60 min",c:"cg"}],
+  tbar:[{p:22,col:"#FAC775"},{p:33,col:"#9FE1CB"},{p:44,col:"#D3D1C7"}],
+  blocks:[
+    {badge:"range",bc:"brange",dur:"30 min",title:"Pin High range — drill reinforcement + wedge yardage mapping",
+     note:"Thursday range follows Wednesday's outdoor short-game session. Now you bring the feels back to Trackman for validation.",
+     sections:[
+       {l:"Thursday range protocol",items:["10 min: same coach drill as Monday — pure reps, more naturalism","10 min: wedge yardage mapping — 48° and 54° full + 3/4 swings, record carry on Trackman","10 min: 7-iron contact quality — no swing thoughts, just clean contact"]},
+       {l:"Wedge yardage system — build over month 1",items:["48° full swing: average carry to within ±3y","48° three-quarter swing: average carry to within ±3y","54° full swing: average carry to within ±3y","54° three-quarter swing: average carry to within ±3y","Month 2: add half-swing. Month 3: add 60° = 9 total distances"]}
+     ]},
+    {badge:"fixed",bc:"bfixed",dur:"15 min",title:"WellPutt block 1 — 3-foot circle drill",
+     note:"Third completion of the week after Monday. Should feel progressively easier as the month goes on.",
+     sections:[
+       {l:"3-foot circle drill",items:["8 balls at 3 feet, all angles — make all 8 in a row, restart from zero on any miss","Track: how many restarts? Should trend downward week on week"]}
+     ]},
+    {badge:"focus",bc:"bfocus",dur:"20 min",title:"WellPutt block 2 — 6–10 foot pressure work",
+     note:"The 6–10 foot zone is where handicap is won and lost. Tour pros make 55%+ from 6 feet. Most 15-handicappers make 20–25%.",
+     sections:[
+       {l:"6-foot pressure drill (10 min)",items:["5 balls from each of 4 positions: straight uphill, downhill, break left, break right","Track make % per position — identify your worst angle","Target: 60% month 1 → 75% month 3 → 85%+ month 6"]},
+       {l:"8–10 foot repetition (10 min)",items:["Pick one distance and angle — 15 putts without moving","Target: 35% from 8 feet by month 3 (currently likely 15–20%)"]}
+     ]},
+    {badge:"performance",bc:"bperf",dur:"10 min",title:"WellPutt block 3 — stroke mechanics data check",
+     sections:[
+       {l:"Protocol",items:["10 putts from 6 feet with WellPutt metrics displayed","Face angle at impact — target ±1.5° of square","Tempo ratio (backswing : through-swing) — target 2:1 or 3:1","Flag any pattern persisting over 2+ weeks — bring to coach"]}
+     ]},
+    {badge:"targets",bc:"bmetric",dur:"",title:"Thursday baseline metrics",
+     metrics:[{l:"3-foot make rate",v:"95%+",n:"Non-negotiable"},{l:"6-foot make rate",v:"60%+",n:"Rising to 85% mo 6"},{l:"8-foot make rate",v:"35%+",n:"Rising to 45% mo 6"},{l:"Face angle",v:"±1.5°",n:"Target ±1° by mo 3"},{l:"Tempo ratio",v:"2:1–3:1",n:"Backswing : through"},{l:"Wedge yardages",v:"4 known",n:"48° + 54°, full + 3/4"}]}
+  ]
+},
+
+fri:{
+  title:"Sim (feel + drill) + WellPutt + Legs gym",
+  venue:"Pin High",time:"3:30–5:45pm · 2.25 hrs",
+  chips:[{l:"Sim 60 min",c:"cp"},{l:"WellPutt 15 min",c:"ct"},{l:"Legs gym 60 min",c:"cg"}],
+  tbar:[{p:44,col:"#CECBF6"},{p:11,col:"#9FE1CB"},{p:44,col:"#D3D1C7"}],
+  blocks:[
+    {badge:"focus",bc:"bfocus",dur:"20 min",title:"Coach drill — deeper reps, lighter analysis",
+     focusBox:{l:"Same drill as Monday — Friday is volume, not introduction",t:"Same coach-prescribed drill as Monday. More total reps, less Trackman scrutiny. Groove the pattern — glance at data every 3–4 shots, not every shot. Trust the week's work."},
+     sections:[
+       {l:"The weekly progression",items:["Monday sim: refined application with Trackman confirmation","Wednesday Wembley: real grass, four-shot framework","Thursday range: Trackman validation of outdoor feels","Friday sim: trust it — normal swing, one cue, no analysis pressure"]},
+       {l:"Friday principle",items:["If the drill felt natural all week — trust it, keep building","If it felt forced — note what specifically felt wrong, bring to next lesson","Never introduce new swing thoughts on Friday — too close to Tuesday's round"]}
+     ]},
+    {badge:"mini-game",bc:"bgame",dur:"15 min",title:"Wedge scoring zone — 50–120y proximity work",
+     gameBox:{l:"Same games as Monday — Mon vs. Fri comparison is your weekly progress check",t:"If Friday scores are consistently better than Monday, the week's drilling is working. If they're the same or worse, something isn't transferring — flag to coach."},
+     sections:[
+       {l:"Game 1 — proximity ladder (8 min)",items:["4 targets: 50y, 70y, 90y, 110y — one shot each, repeat twice (8 shots)","Call club + swing length before each shot — commit before addressing","Score: shots within 20-foot radius. Compare to Monday's score."]},
+       {l:"Game 2 — random proximity (7 min)",items:["7 shots from random distances 50–120y — call club/length before each","Track cumulative proximity in feet","Compare to Monday's score — is Friday better?"]}
+     ]},
+    {badge:"performance",bc:"bperf",dur:"10 min",title:"Sim course play + free play",
+     note:"Same course as Monday for direct comparison. Then free play to end the week enjoying golf.",
+     sections:[
+       {l:"Protocol",items:["2–3 holes, par 4s and 5s — full pre-shot routine every shot","Compare to Monday's course play: better, same, or worse?","Friday question: did this week work? Bring specifics to next lesson"]},
+       {l:"Free play (remaining sim time)",items:["Any remaining time: load any course, play freely — no data review","Ends the week enjoying golf, not analysing it"]}
+     ]},
+    {badge:"wellputt",bc:"bwarm",dur:"15 min",title:"WellPutt — distance control + 3-foot finish",
+     note:"Light intensity before legs gym. Distance feel only — no mechanics work.",
+     sections:[
+       {l:"Distance control (10 min)",items:["4 × 20-foot — within 2 feet · 4 × 30-foot — within 3 feet · 4 × 40-foot — within 3 feet","Note: consistently long or short? Directional pattern = flag to coach"]},
+       {l:"3-foot confidence finish (5 min)",items:["Complete the 3-foot circle drill once — end on a make, always"]}
+     ]},
+    {badge:"targets",bc:"bmetric",dur:"",title:"Friday baseline metrics",
+     metrics:[{l:"Proximity score",v:"5/8 shots",n:"Same target as Monday"},{l:"Mon vs Fri",v:"Fri ≥ Mon",n:"Drilling is working"},{l:"Sim holes",v:"2–3 holes",n:"Same course as Monday"},{l:"3-foot drill",v:"Completed once",n:"End on a make"}]}
+  ]
+},
+
+flex:{
+  title:"Saturday or Sunday — Flex day",
+  venue:"Your choice",time:"Any time · 45–90 min OR 18-hole round",
+  chips:[{l:"OPTIONAL",c:"cp"},{l:"Option A: 18-hole round",c:"cc"},{l:"Option B: Range + WellPutt",c:"corange"}],
+  tbar:[{p:50,col:"#F5C4B3"},{p:50,col:"#FAC775"}],
+  blocks:[
+    {badge:"optional",bc:"bopt",dur:"",title:"How to use the flex day",
+     optbox:"Not mandatory. Skip if tired or busy. The 5-day plan is complete without it. The 18-hole rounds you play here count toward your monthly green fee budget.",
+     sections:[
+       {l:"Option A — 18-hole round at Wembley (~$45–50 + $8 warm-up)",items:["Best when: you played well Tuesday and want full pressure exposure","Counts as one of your 1–2 monthly 18-hole rounds (~$120/mo budget)","20-ball range warm-up before tee time, then practice green for 10 min","Shot Scope active — full 18-hole stat collection"]},
+       {l:"Option B — Range + WellPutt at Pin High (~75 min)",items:["Best when: you didn't play and want extra drilling","Uses range allocation — won't eat into sim sessions","30 min range (drill reinforcement) + 45 min WellPutt"]},
+       {l:"Option C — Skip entirely",items:["Best when: you're tired, sore from Friday legs, or have other commitments","Rest is practice too — fresh body Monday is more valuable than tired Saturday","No guilt — the plan works fully without this day"]}
+     ]},
+    {badge:"clinic",bc:"bclinic",dur:"90 min × 4 weeks",title:"Wembley short-game clinic (quarterly schedule)",
+     note:"Your $185 quarterly short-game clinic with Andrew Thomas runs over 4 consecutive weeks. Schedule the first one for month 4–6 (after fundamentals are grooved through self-teach + monthly Pin High coaching).",
+     sections:[
+       {l:"Recommended clinic schedule (year 1)",items:["Months 1–3: self-teach short game using YouTube + Wednesday Wembley sessions","Months 4–6: first quarterly clinic block (4 sessions over 4 weeks)","Months 7–9: apply learnings, no clinic","Months 10–12: second quarterly clinic block (4 sessions)"]},
+       {l:"How clinic days fit the week",items:["Replace one Wednesday Wembley short-game session with the clinic","Or add as an extra session if scheduling allows","6 hours of short-game coaching per quarter at $31/hour — outstanding value"]}
+     ]},
+    {badge:"range",bc:"brange",dur:"30 min",title:"Option B detail — range drill reinforcement",
+     sections:[
+       {l:"Month 1–3: drill reinforcement",items:["Same coach drill as Mon/Thu — pure reps, relaxed, no data pressure","20 balls with 7-iron · 10 balls with 9-iron — same cue, progressively shorter clubs"]},
+       {l:"Month 4+: shape practice",items:["10 × intentional fade (7-iron): open face slightly, path more left","10 × intentional draw (7-iron): close face slightly, path more right","Track first-attempt success rate — target 50% by month 12, 70% by month 24"]}
+     ]},
+    {badge:"focus",bc:"bfocus",dur:"45 min",title:"Option B detail — WellPutt session",
+     sections:[
+       {l:"3-foot circle (15 min)",items:["Complete the drill once — 8 in a row, restart from zero on miss","4th completion of the week — should feel close to automatic by month 3"]},
+       {l:"6-foot targeted repetition (20 min)",items:["Drill your worst angle (identified on Thursday)","15 putts from that exact position — pure targeted repetition"]},
+       {l:"Free putting finish (10 min)",items:["No pressure — any distance, any line","Enjoy the feel of making putts — end on a make"]}
+     ]},
+    {badge:"targets",bc:"bmetric",dur:"",title:"Flex day usage targets",
+     metrics:[{l:"Range sessions/mo",v:"≤10 total",n:"Within allocation"},{l:"Sim sessions/mo",v:"0 used today",n:"Preserve for weekdays"},{l:"3-foot drill",v:"Completed once",n:"4th of the week"},{l:"6-foot worst angle",v:"60%+ makes",n:"Targeted weakness"}]}
+  ]
+}
+};
+
+function rb(block){
+  const id='b'+Math.random().toString(36).substr(2,9);
+  let h='';
+  if(block.note)h+=`<div class="notebox"><div class="box-label">Note</div>${block.note}</div>`;
+  if(block.optbox)h+=`<div class="optbox"><div class="box-label">Optional</div>${block.optbox}</div>`;
+  if(block.focusBox)h+=`<div class="fbox"><div class="box-label">${block.focusBox.l}</div>${block.focusBox.t}</div>`;
+  if(block.gameBox)h+=`<div class="gbox"><div class="box-label">${block.gameBox.l}</div>${block.gameBox.t}</div>`;
+  if(block.sections)block.sections.forEach(s=>{h+=`<div class="ds"><div class="dl">${s.l}</div><ul class="dlist">${s.items.map(i=>`<li class="di"><span class="dot"></span><span>${i}</span></li>`).join('')}</ul></div>`;});
+  if(block.metrics)h+=`<div class="mgrid">${block.metrics.map(m=>`<div class="mc"><div class="ml">${m.l}</div><div class="mv">${m.v}</div><div class="mn">${m.n}</div></div>`).join('')}</div>`;
+  return`<div class="block"><div class="bh" onclick="tog('${id}')"><span class="badge ${block.bc}">${block.badge}</span><span class="btitle">${block.title}</span>${block.dur?`<span class="bdur">${block.dur}</span>`:''}<span class="bchev" id="cv-${id}">▼</span></div><div class="bb" id="${id}">${h}</div></div>`;
+}
+
+function tog(id){
+  document.getElementById(id).classList.toggle('open');
+  document.getElementById('cv-'+id).classList.toggle('open');
+}
+
+function rs(key){
+  const s=S[key];
+  return`<div class="sh"><div><div class="st">${s.title}</div><div class="sm">${s.venue} &middot; ${s.time}</div></div><div class="chips">${s.chips.map(c=>`<span class="chip ${c.c}">${c.l}</span>`).join('')}</div></div><div class="timeline">${s.tbar.map(t=>`<div class="tseg" style="flex:${t.p};background:${t.col}"></div>`).join('')}</div><div class="blocks">${s.blocks.map(rb).join('')}</div>`;
+}
+
+function sw(day){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector(`[data-day="${day}"]`).classList.add('active');
+  document.getElementById('sc').innerHTML=rs(day);
+}
+
+document.getElementById('tabs').addEventListener('click',e=>{
+  const t=e.target.closest('[data-day]');
+  if(t)sw(t.dataset.day);
+});
+
+sw('mon');
+</script>

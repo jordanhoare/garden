@@ -7,6 +7,3 @@
 - Use taxation and public spending as tools to address social needs
 
 If you're thinking about governance as "what should be left to the market vs what should be socialised", then both models draw the line in the same places, but apply different philosophies to manage those areas.
-
-
-
