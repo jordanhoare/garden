@@ -1,16 +1,17 @@
 ---
-email: 
-phone: 
-birthday: 
-street address: 
-city: 
-state: 
-zip: 
-country: 
-tags: 
+email:
+phone:
+birthday:
+street address:
+city:
+state:
+zip:
+country:
+tags:
   - {{VALUE:Tag}}
 ---
 > [!discuss]+ To Discuss with {{VALUE:First Name}}
+>
 > ```tasks
 > not done
 > (tag includes #discuss) AND (tag includes #{{VALUE:Tag}})
@@ -19,6 +20,7 @@ tags:
 > ```
 
 > [!attention]+ Waiting for {{VALUE:First Name}}
+>
 > ```tasks
 > not done
 > (tag includes #waiting) AND (tag includes #{{VALUE:Tag}})
@@ -27,6 +29,7 @@ tags:
 > ```
 
 > [!todo]+ Assigned to {{VALUE:First Name}}
+>
 > ```tasks
 > not done
 > description includes [[{{VALUE:First Name}} {{VALUE:Last Name}}]]

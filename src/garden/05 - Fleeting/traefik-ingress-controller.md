@@ -22,6 +22,7 @@ match: Host(`status.mythbound.dev`)
 ```
 
 2. Traefik will direct the matched request to the Kubernetes service named gatus on port 8080.
+
 ```yaml
 services:
   - name: gatus
@@ -29,6 +30,7 @@ services:
 ```
 
 ### Summary of Traffic Flow:
+
 Client → Cloudflare:
     The client connects to Cloudflare over HTTPS.
     Cloudflare terminates the SSL/TLS connection and verifies the certificate for the domain (either a Cloudflare-issued certificate or one you provided).
@@ -41,7 +43,6 @@ Cloudflare → OCI Load Balancer → NGINX:
 Traefik (SSL/TLS Termination):
     Traefik will terminate the SSL/TLS connection using the certificate stored as a Kubernetes secret, allowing it to handle HTTPS traffic.
     Traefik will then route the request to the appropriate service inside your Kubernetes cluster (e.g., gatus for status.mythbound.dev).
-
 
 kubectl create secret tls gatus-tls \
   --cert=public_cert.pem \

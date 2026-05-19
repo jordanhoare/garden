@@ -17,4 +17,5 @@ My journal entries serve as:
 - A record of my evolving thinking process
 
 ## Recent Entries
+
 TODO

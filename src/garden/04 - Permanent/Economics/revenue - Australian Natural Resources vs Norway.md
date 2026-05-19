@@ -16,7 +16,7 @@
 ### Observations
 
 - **Australia collects less than half the share of resource profits** that Norway does, despite similarly high GOP margins in their respective sectors.
-- **Applying a 78% tax regime** to profit margins in Australia's resource sector could hypothetically increase government revenue by over **A$100 billion per year**, depending on tax structure and current credit policy restructuring... which is __more than 3× the annual Medicare budget (~A$32 billion) or 2.5× the federal education budget (~A$41 billion)__
+- **A 78% tax regime** to profit margins in Australia's resource sector would hypothetically increase government revenue by over **A$100 billion per year** - more than 3× the annual Medicare budget (~A$32 billion) or 2.5× the federal education budget (~A$41 billion)
 - **Redirecting resource revenues to a sovereign wealth fund** would allow long-term fiscal savings via an Australian equivalent of the [[gpfg - Government Pension Fund Global]].
 - **Public investment in mining assets** would provide the state with ongoing income and strategic influence in key industries.
 

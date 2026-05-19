@@ -9,7 +9,6 @@
 | 40      | Lab   | K8s nodes, NAS       | Routed via firewall rules          |
 | 50      | IoT   | Cameras, sensors     | Blocked from accessing other VLANs |
 
-
 ```mermaid
 flowchart TD
     subgraph Internet
@@ -69,9 +68,6 @@ flowchart TD
     NestRouter --> NestDevices
 
 ```
-
-
-
 
 ```mermaid
 

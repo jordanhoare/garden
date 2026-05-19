@@ -447,7 +447,22 @@
     "hash-table": 249,
     "sorting": 250,
     "dsa": 251,
-    "data-structures": 252
+    "data-structures": 252,
+    "two-pointers": 253,
+    "sliding-window": 254,
+    "string": 255,
+    "linked-list": 256,
+    "recursion": 257,
+    "tree": 258,
+    "dfs": 259,
+    "bfs": 260,
+    "graph": 261,
+    "shortest-path": 262,
+    "dp": 263,
+    "optimization": 264,
+    "comprehensive": 265,
+    "interview-prep": 266,
+    "data-structure": 267
   },
   "_version": 3
 }

@@ -1,12 +1,12 @@
 ---
 created: {{DATE}}
-modified: 
+modified:
 completed: false
-leetcode-index: {{VALUE:id}} 
+leetcode-index: {{VALUE:id}}
 link: {{VALUE:link}}
-difficulty: {{VALUE:difficulty}} 
+difficulty: {{VALUE:difficulty}}
 tags:
-{{VALUE:tags}} 
+{{VALUE:tags}}
    - dsa
    - data-structures
    - algorithms
@@ -15,12 +15,17 @@ tags:
 # {{VALUE:title}}
 
 ## Problem Statement
+
 {{VALUE:problemStatement}}
+
 ## Hints
+
 {{VALUE:formattedHints}}
+
 ## Approach
 
-- 
+-
+
 ## Solution
 
 ```python
@@ -29,8 +34,9 @@ tags:
 
 ## Complexity Analysis
 
-- Time complexity: 
-- Space complexity: 
+- Time complexity:
+- Space complexity:
 
 ## Reflections
-- 
+
+-

@@ -6,19 +6,17 @@ on:
     branches:
       - master
     paths:
-      - "src/**"
+      - "src/garden/**"
   push:
     branches:
       - master
     paths:
-      - "src/**"
+      - "src/garden/**"
 
 jobs:
-  quartz:
+  markdownlint:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code.
-        uses: actions/checkout@main
+      - uses: actions/checkout@main
 
-      - name: Tests
-        run: true
+      - uses: pre-commit/action@v3.0.1

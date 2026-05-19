@@ -18,8 +18,6 @@ kubectl logs -n kube-system deployment/metrics-server
 kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes
 ```
 
-
-
 restart k3s control plane (and nodes?)
 
 ```

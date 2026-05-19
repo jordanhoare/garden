@@ -1,0 +1,45 @@
+[tools]
+node = "22"
+
+[tasks.setup]
+description = "Bootstrap a new machine (run once after clone)"
+depends = ["deps", "hooks"]
+
+[tasks.deps]
+description = "Install Quartz npm dependencies"
+run = "cd src/quartz && npm ci"
+
+[tasks.hooks]
+description = "Install pre-commit hooks"
+run = "pre-commit install"
+
+[tasks.build]
+description = "Sync garden content and build the Quartz site"
+run = [
+    "rsync -av --exclude='09 - Meta/Templates' src/garden/ src/quartz/content/",
+    "cd src/quartz && npx quartz build",
+]
+
+[tasks.serve]
+description = "Sync garden content and serve locally with live reload"
+run = [
+    "rsync -av --exclude='09 - Meta/Templates' src/garden/ src/quartz/content/",
+    "cd src/quartz && npx quartz build --serve -d public",
+]
+
+[tasks.sync]
+description = "Pull latest changes, commit garden edits, and push"
+run = """
+git pull --rebase --autostash
+git add src/garden
+git diff --cached --quiet || git commit -m "chore: sync notes $(date +%Y-%m-%dT%H:%M)"
+git push
+"""
+
+[tasks.prepare]
+description = "Run pre-commit hooks against all garden files"
+run = "pre-commit run --all-files"
+
+[tasks.clean]
+description = "Remove generated build artefacts"
+run = "rm -rf src/quartz/public src/quartz/.quartz-cache src/quartz/content"

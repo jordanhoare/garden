@@ -1,4 +1,4 @@
-Democracy refers to a system of government where power ultimately resides with citizens, typically exercised through voting, elections, and representative institutions. 
+Democracy refers to a system of government where power ultimately resides with citizens, typically exercised through voting, elections, and representative institutions.
 
 As a political concept, it addresses fundamental questions about the organisation of power, legitimacy of rule, representation, and governance structures.
 
