@@ -3,13 +3,13 @@ repos:
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
-        files: ^src/garden/.*\.md$
+        files: ^garden/.*\.md$
       - id: end-of-file-fixer
-        files: ^src/garden/.*\.md$
+        files: ^garden/.*\.md$
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.44.0
     hooks:
       - id: markdownlint-fix
-        files: ^src/garden/.*\.md$
+        files: ^garden/.*\.md$
         args: [--config, .markdownlint.yaml]

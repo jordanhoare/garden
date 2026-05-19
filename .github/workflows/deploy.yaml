@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
@@ -24,24 +24,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Create content directory
-        run: |
-          mkdir -p src/quartz/content
-      - name: Copy content
-        run: |
-          rsync -av --exclude='09 - Meta/Templates' src/garden/ src/quartz/content/
-      - name: Install Dependencies
-        run: |
-          cd src/quartz
-          npm ci
+      - name: Copy garden content into Quartz
+        run: rsync -av --exclude='09 - Meta/Templates' garden/ quartz/content/
+      - name: Install dependencies
+        run: cd quartz && npm ci
       - name: Build Quartz
-        run: |
-          cd src/quartz
-          npx quartz build
-      - name: Upload artifact
+        run: cd quartz && npx quartz build
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: src/quartz/public/
+          path: quartz/public/
 
   deploy:
     needs: build

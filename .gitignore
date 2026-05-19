@@ -144,6 +144,8 @@ tsconfig.tsbuildinfo
 private/
 .replit
 replit.nix
-src/garden/.obsidian/workspace.json
-src/garden/.obsidian/todoist-token
-src/quartz/content/
+garden/.obsidian/workspace.json
+garden/.obsidian/todoist-token
+quartz/content/
+quartz/public/
+quartz/.quartz-cache/
