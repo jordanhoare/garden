@@ -28,11 +28,20 @@ run = [
 ]
 
 [tasks.sync]
-description = "Pull latest changes, commit garden edits, and push"
+description = "Format, pull latest changes, commit garden edits, and push"
 run = """
+echo "==> Formatting garden files..."
+pre-commit run --all-files
+pre-commit run --all-files || { echo "ERROR: Formatting failed after auto-fix pass. Run 'mise run prepare' to inspect issues."; exit 1; }
+
+echo "==> Pulling latest changes..."
 git pull --rebase --autostash
-git add src/garden
+
+echo "==> Staging and committing garden changes..."
+git add .
 git diff --cached --quiet || git commit -m "chore: sync notes $(date +%Y-%m-%dT%H:%M)"
+
+echo "==> Pushing..."
 git push
 """
 
