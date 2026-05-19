@@ -1,92 +1,104 @@
 ---
+created:
+  "{ DATE }":
 modified:
 tags:
-   - dsa
-   - data-structures
-   - algorithms
+  - algorithms
 ---
-# {{VALUE:name}}
 
-## Definition
+# Algorithm: {{title}}
 
-<!-- Formal definition of what this data structure is -->
+## Problem Statement
 
-## Purpose
+<!-- Formal definition of the problem this algorithm solves -->
 
-<!-- The specific problem(s) this data structure is designed to solve -->
+## Input/Output
 
-## Structure
+- **Input**: <!-- Describe the expected input format -->
+- **Output**: <!-- Describe the expected output format -->
 
-<!-- How this data structure is organized/arranged -->
+## Approach
 
-## Visual Representation
+<!-- High-level description of the algorithm's approach to solving the problem -->
+
+## Algorithm Steps
+
+1. <!-- Step 1 -->
+2. <!-- Step 2 -->
+3. <!-- Step 3 -->
+
+## Pseudocode
 
 ```
-[ASCII diagram or description of the structure]
+ALGORITHM AlgorithmName(input)
+    // Pseudocode representation
+    // of the algorithm
+    return output
+END
 ```
 
-## Core Operations
+## Example Walkthrough
 
-|Operation|Description|Time Complexity|Space Complexity|
-|---|---|---|---|
-|Access||||
-|Search||||
-|Insert||||
-|Delete||||
-|[Other]||||
+<!-- Step-by-step application of the algorithm to a small example -->
+
+```
+Input: [example input]
+
+Step 1: [transformation]
+Step 2: [transformation]
+...
+Output: [example output]
+```
 
 ## Implementation
 
 ```python
-# Python implementation of the data structure itself (not algorithms using it)
-class MyDataStructure:
-    def __init__(self):
-        # Initialize
-        pass
-
-    def operation1(self):
-        # Implementation
-        pass
-
-    def operation2(self):
-        # Implementation
-        pass
+# Python implementation of the algorithm itself
+def algorithm_name(input):
+    # Implementation
+    return output
 ```
 
-## Key Characteristics
+## Complexity Analysis
 
-- <!-- Characteristic 1 -->
-- <!-- Characteristic 2 -->
-- <!-- Characteristic 3 -->
+- **Time Complexity**: <!-- O(?) with explanation of why -->
+- **Space Complexity**: <!-- O(?) with explanation of why -->
+- **Best Case**: <!-- When does this algorithm perform best? -->
+- **Worst Case**: <!-- When does this algorithm perform worst? -->
+- **Average Case**: <!-- Expected performance in typical scenarios -->
 
-## Memory Model
+## Correctness Proof
 
-<!-- How this structure is represented in memory -->
+<!-- Brief explanation or link to why this algorithm is correct -->
+
+## Optimizations
+
+- <!-- Optimization 1 -->
+- <!-- Optimization 2 -->
+
+## Constraints & Limitations
+
+- <!-- Constraint 1 -->
+- <!-- Limitation 1 -->
+
+## Applications
+
+- <!-- Real-world application 1 -->
+- <!-- Real-world application 2 -->
 
 ## Variants
 
 - <!-- Variant 1 with brief description -->
 - <!-- Variant 2 with brief description -->
 
-## Advantages
+## Related Algorithms
 
-- <!-- Advantage 1 -->
-- <!-- Advantage 2 -->
+- <!-- Related algorithm and how it compares -->
+- <!-- Related algorithm and how it compares -->
 
-## Limitations
+## Historical Context
 
-- <!-- Limitation 1 -->
-- <!-- Limitation 2 -->
-
-## Common Use Cases
-
-- <!-- Use case 1 -->
-- <!-- Use case 2 -->
-
-## Related Data Structures
-
-- <!-- Related structure and how it compares -->
-- <!-- Related structure and how it compares -->
+<!-- Brief note on origin, development, or significance -->
 
 ## References
 

@@ -30,23 +30,15 @@
 
   "packageRules": [
     {
-      "description": "Batch all patch updates into a single PR; auto-merge after 3-day stabilisation period",
-      "matchUpdateTypes": ["patch"],
-      "groupName": "patch updates",
-      "groupSlug": "all-patch",
+      "description": "Batch all patch and minor updates into a single PR; auto-merge after 3-day stabilisation period",
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "patch and minor updates",
+      "groupSlug": "all-non-major",
       "minimumReleaseAge": "3 days",
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash",
       "labels": ["dependencies", "automerge"]
-    },
-    {
-      "description": "Batch all minor updates into a single PR for manual review",
-      "matchUpdateTypes": ["minor"],
-      "groupName": "minor updates",
-      "groupSlug": "all-minor",
-      "automerge": false,
-      "labels": ["dependencies"]
     },
     {
       "description": "Major updates always get individual PRs — never auto-merge",

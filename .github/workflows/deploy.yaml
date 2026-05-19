@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "garden/**"
+      - "quartz/**"
+      - ".github/workflows/deploy.yaml"
 
 permissions:
   contents: read
@@ -16,7 +20,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,9 +28,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Cache npm dependencies
+        id: cache-npm
+        uses: actions/cache@v4
+        with:
+          path: quartz/node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('quartz/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-npm-
+      - name: Cache Quartz build
+        uses: actions/cache@v4
+        with:
+          path: quartz/.quartz-cache
+          key: ${{ runner.os }}-quartz-${{ hashFiles('garden/**') }}
+          restore-keys: ${{ runner.os }}-quartz-
       - name: Copy garden content into Quartz
         run: rsync -av --exclude='09 - Meta/Templates' garden/ quartz/content/
       - name: Install dependencies
+        if: steps.cache-npm.outputs.cache-hit != 'true'
         run: cd quartz && npm ci
       - name: Build Quartz
         run: cd quartz && npx quartz build
@@ -40,7 +58,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
