@@ -1,10 +1,66 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard"],
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
-  "baseBranches": ["master"],
-  "extends": [
-      "config:recommended",
-      "github>jordanhoare/second-brain//.github/renovate/auto-merge.json"
+  "timezone": "UTC",
+  "schedule": ["after 2am on Sunday"],
+  "platformAutomerge": true,
+  "prConcurrentLimit": 5,
+  "prCreation": "not-pending",
+  "rebaseWhen": "behind-base-branch",
+  "labels": ["dependencies"],
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 3am on the first day of the month"]
+  },
+
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "schedule": ["at any time"],
+    "minimumReleaseAge": null,
+    "labels": ["security", "dependencies"],
+    "automerge": false
+  },
+
+  "packageRules": [
+    {
+      "description": "Batch all patch updates into a single PR; auto-merge after 3-day stabilisation period",
+      "matchUpdateTypes": ["patch"],
+      "groupName": "patch updates",
+      "groupSlug": "all-patch",
+      "minimumReleaseAge": "3 days",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash",
+      "labels": ["dependencies", "automerge"]
+    },
+    {
+      "description": "Batch all minor updates into a single PR for manual review",
+      "matchUpdateTypes": ["minor"],
+      "groupName": "minor updates",
+      "groupSlug": "all-minor",
+      "automerge": false,
+      "labels": ["dependencies"]
+    },
+    {
+      "description": "Major updates always get individual PRs — never auto-merge",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["dependencies", "breaking"]
+    },
+    {
+      "description": "GitHub Actions: batch all updates, never auto-merge (supply-chain risk)",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "groupSlug": "github-actions",
+      "automerge": false,
+      "labels": ["dependencies", "ci"]
+    }
   ]
 }

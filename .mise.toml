@@ -7,7 +7,7 @@ depends = ["deps", "hooks"]
 
 [tasks.deps]
 description = "Install Quartz npm dependencies"
-run = "cd src/quartz && npm ci"
+run = "cd quartz && npm ci"
 
 [tasks.hooks]
 description = "Install pre-commit hooks"
@@ -16,15 +16,15 @@ run = "pre-commit install"
 [tasks.build]
 description = "Sync garden content and build the Quartz site"
 run = [
-    "rsync -av --exclude='09 - Meta/Templates' src/garden/ src/quartz/content/",
-    "cd src/quartz && npx quartz build",
+    "rsync -av --exclude='09 - Meta/Templates' garden/ quartz/content/",
+    "cd quartz && npx quartz build",
 ]
 
 [tasks.serve]
 description = "Sync garden content and serve locally with live reload"
 run = [
-    "rsync -av --exclude='09 - Meta/Templates' src/garden/ src/quartz/content/",
-    "cd src/quartz && npx quartz build --serve -d public",
+    "rsync -av --exclude='09 - Meta/Templates' garden/ quartz/content/",
+    "cd quartz && npx quartz build --serve -d public",
 ]
 
 [tasks.sync]
@@ -51,4 +51,4 @@ run = "pre-commit run --all-files"
 
 [tasks.clean]
 description = "Remove generated build artefacts"
-run = "rm -rf src/quartz/public src/quartz/.quartz-cache src/quartz/content"
+run = "rm -rf quartz/public quartz/.quartz-cache quartz/content"
