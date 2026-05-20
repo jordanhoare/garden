@@ -1,6 +1,10 @@
 # second-brain
 
-A digital garden of interconnected notes on software development, philosophy, and general thoughts. Structured using the [Zettelkasten](https://zettelkasten.de/) and [PARA](https://fortelabs.com/blog/para/) methods. Authored in [Obsidian](https://obsidian.md/) and published via [Quartz](https://quartz.jzhao.xyz/).
+A digital garden — a personal, evolving collection of notes published openly on the web. Unlike a blog, notes here are never "finished"; they grow and link to each other over time, making the structure of thought visible alongside the content.
+
+This garden is organised using two methods together, which is unconventional: [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten) and [PARA](https://fortelabs.com/blog/para/). Zettelkasten is a bottom-up system focused on building a dense web of atomic, evergreen ideas through linking — it favours emergence over hierarchy. PARA is a top-down system for organising by actionability: Projects, Areas, Resources, Archives. Used together, PARA provides the folder skeleton while Zettelkasten governs how permanent knowledge nodes are written and connected within it.
+
+Authored in [Obsidian](https://obsidian.md/) and published via [Quartz](https://quartz.jzhao.xyz/).
 
 ## Prerequisites
 

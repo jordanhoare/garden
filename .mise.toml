@@ -13,6 +13,14 @@ run = "cd quartz && npm ci"
 description = "Install pre-commit hooks"
 run = "pre-commit install"
 
+[tasks.prepare]
+description = "Run pre-commit hooks against all garden files"
+run = "pre-commit run --all-files"
+
+[tasks.clean]
+description = "Remove generated build artefacts"
+run = "rm -rf quartz/public quartz/.quartz-cache quartz/content"
+
 [tasks.build]
 description = "Sync garden content and build the Quartz site"
 run = [
@@ -30,25 +38,10 @@ run = [
 [tasks.sync]
 description = "Format, pull latest changes, commit garden edits, and push"
 run = """
-echo "==> Formatting garden files..."
-pre-commit run --all-files || true
-pre-commit run --all-files || { echo "ERROR: Formatting failed after auto-fix pass. Run 'mise run prepare' to inspect issues."; exit 1; }
-
-echo "==> Pulling latest changes..."
+pre-commit run --all-files > /dev/null 2>&1 || true
+pre-commit run --all-files || { echo "ERROR: formatting failed after auto-fix pass — run 'mise run prepare' to inspect"; exit 1; }
 git pull --rebase --autostash
-
-echo "==> Staging and committing garden changes..."
 git add .
 git diff --cached --quiet || git commit -m "chore: sync notes $(date +%Y-%m-%dT%H:%M)"
-
-echo "==> Pushing..."
 git push
 """
-
-[tasks.prepare]
-description = "Run pre-commit hooks against all garden files"
-run = "pre-commit run --all-files"
-
-[tasks.clean]
-description = "Remove generated build artefacts"
-run = "rm -rf quartz/public quartz/.quartz-cache quartz/content"
