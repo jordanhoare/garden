@@ -1,4 +1,4 @@
-# second-brain
+# garden
 
 A digital garden — a personal, evolving collection of notes published openly on the web. Unlike a blog, notes here are never "finished"; they grow and link to each other over time, making the structure of thought visible alongside the content.
 
@@ -16,8 +16,8 @@ Authored in [Obsidian](https://obsidian.md/) and published via [Quartz](https://
 ## Setup
 
 ```bash
-git clone https://github.com/jordanhoare/second-brain.git
-cd second-brain
+git clone https://github.com/jordanhoare/garden.git
+cd garden
 mise install        # installs Node 22 via .mise.toml
 mise run setup      # installs Quartz npm dependencies and pre-commit hooks
 ```
