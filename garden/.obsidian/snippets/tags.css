@@ -1,0 +1,48 @@
+/* Flat tag pills using the Catppuccin Mocha mauve.
+   Reading view uses .tag (single element); editor splits the tag into
+   .cm-hashtag-begin (the #) and .cm-hashtag-end (the text), so they need
+   matching backgrounds, no gap, and rounded ends only on the outer edges. */
+
+:root {
+  --tag-bg: rgba(203, 166, 247, 0.15);
+  --tag-bg-hover: rgba(203, 166, 247, 0.25);
+  --tag-fg: rgb(203, 166, 247);
+}
+
+/* Reading view */
+.tag,
+a.tag {
+  background-color: var(--tag-bg);
+  color: var(--tag-fg);
+  border: none;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.85em;
+  font-weight: 500;
+  text-decoration: none;
+}
+.tag:hover,
+a.tag:hover {
+  background-color: var(--tag-bg-hover);
+  color: var(--tag-fg);
+  text-decoration: none;
+}
+
+/* Editor (Live Preview / Source) - both halves share background + color,
+   only the outer edges are rounded so it reads as one pill. */
+.cm-s-obsidian span.cm-hashtag {
+  background-color: var(--tag-bg);
+  color: var(--tag-fg);
+  border: none;
+  padding: 2px 0;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+.cm-s-obsidian span.cm-hashtag-begin {
+  border-radius: 6px 0 0 6px;
+  padding-left: 6px;
+}
+.cm-s-obsidian span.cm-hashtag-end {
+  border-radius: 0 6px 6px 0;
+  padding-right: 8px;
+}

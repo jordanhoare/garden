@@ -1,0 +1,37 @@
+/* Catppuccin Mocha palette mapped to all built-in Obsidian callout types.
+   Override --callout-color (RGB triple) and the type flows through border,
+   title bar, icon, and subtle glow automatically. */
+
+.callout {
+  border-radius: 8px;
+  border-left: 3px solid rgb(var(--callout-color));
+  box-shadow: 0 0 12px -4px rgb(var(--callout-color) / 0.35);
+}
+
+.callout[data-callout="note"]      { --callout-color: 137, 180, 250; } /* blue */
+.callout[data-callout="abstract"],
+.callout[data-callout="summary"],
+.callout[data-callout="tldr"]      { --callout-color: 137, 220, 235; } /* sky */
+.callout[data-callout="info"]      { --callout-color: 116, 199, 236; } /* sapphire */
+.callout[data-callout="todo"]      { --callout-color: 137, 180, 250; } /* blue */
+.callout[data-callout="tip"],
+.callout[data-callout="hint"],
+.callout[data-callout="important"] { --callout-color: 148, 226, 213; } /* teal */
+.callout[data-callout="success"],
+.callout[data-callout="check"],
+.callout[data-callout="done"]      { --callout-color: 166, 227, 161; } /* green */
+.callout[data-callout="question"],
+.callout[data-callout="help"],
+.callout[data-callout="faq"]       { --callout-color: 249, 226, 175; } /* yellow */
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] { --callout-color: 250, 179, 135; } /* peach */
+.callout[data-callout="failure"],
+.callout[data-callout="fail"],
+.callout[data-callout="missing"]   { --callout-color: 235, 160, 172; } /* maroon */
+.callout[data-callout="danger"],
+.callout[data-callout="error"]     { --callout-color: 243, 139, 168; } /* red */
+.callout[data-callout="bug"]       { --callout-color: 243, 139, 168; } /* red */
+.callout[data-callout="example"]   { --callout-color: 203, 166, 247; } /* mauve */
+.callout[data-callout="quote"],
+.callout[data-callout="cite"]      { --callout-color: 180, 190, 254; } /* lavender */

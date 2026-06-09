@@ -1,0 +1,153 @@
+{
+  "workspaces": {
+    "default": {
+      "main": {
+        "id": "main-split",
+        "type": "split",
+        "children": [
+          {
+            "id": "main-tabs",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "main-empty",
+                "type": "leaf",
+                "state": {
+                  "type": "empty",
+                  "state": {},
+                  "icon": "lucide-file",
+                  "title": "New tab"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "left-split",
+        "type": "split",
+        "children": [
+          {
+            "id": "left-tabs",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "left-files",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical",
+                    "autoReveal": false
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "Files"
+                }
+              },
+              {
+                "id": "left-search",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-search",
+                  "title": "Search"
+                }
+              },
+              {
+                "id": "left-bookmarks",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "Bookmarks"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 260
+      },
+      "right": {
+        "id": "right-split",
+        "type": "split",
+        "children": [
+          {
+            "id": "right-backlinks-tabs",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "right-backlinks",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-coming-in",
+                  "title": "Backlinks"
+                }
+              }
+            ]
+          },
+          {
+            "id": "right-calendar-tabs",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "right-calendar",
+                "type": "leaf",
+                "state": {
+                  "type": "calendar",
+                  "state": {},
+                  "icon": "calendar-with-checkmark",
+                  "title": "Calendar"
+                }
+              }
+            ]
+          },
+          {
+            "id": "right-graph-tabs",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "right-graph",
+                "type": "leaf",
+                "state": {
+                  "type": "graph",
+                  "state": {},
+                  "icon": "lucide-git-fork",
+                  "title": "Graph view"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 320
+      },
+      "left-ribbon": {
+        "hiddenItems": {}
+      },
+      "active": "main-empty",
+      "lastOpenFiles": []
+    }
+  },
+  "active": "default"
+}

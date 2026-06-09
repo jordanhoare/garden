@@ -1,0 +1,31 @@
+/* Force the Calendar pane (right sidebar) to fill its allotted height
+   and scale the grid to the pane width instead of staying fixed-size. */
+
+.workspace-leaf-content[data-type="calendar"] {
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+}
+
+.workspace-leaf-content[data-type="calendar"] .view-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The Calendar plugin's inner container - let it grow */
+.workspace-leaf-content[data-type="calendar"] #calendar-container,
+.workspace-leaf-content[data-type="calendar"] .calendar {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+/* Grid cells - allow them to scale rather than stay fixed */
+.workspace-leaf-content[data-type="calendar"] table {
+  width: 100%;
+  table-layout: fixed;
+}
+.workspace-leaf-content[data-type="calendar"] td,
+.workspace-leaf-content[data-type="calendar"] th {
+  padding: 4px 0;
+}

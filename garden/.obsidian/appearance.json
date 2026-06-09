@@ -1,8 +1,17 @@
 {
-  "cssTheme": "Obsidianite",
+  "cssTheme": "Catppuccin",
   "accentColor": "",
   "theme": "obsidian",
   "enabledCssSnippets": [
-    "colored-sidebar-items"
-  ]
+    "callouts",
+    "tags",
+    "colored-sidebar-items",
+    "calendar"
+  ],
+  "translucency": false,
+  "nativeMenus": false,
+  "interfaceFontFamily": "IosevkaTerm Nerd Font",
+  "textFontFamily": "IosevkaTerm Nerd Font",
+  "monospaceFontFamily": "IosevkaTerm Nerd Font",
+  "baseFontSize": 13
 }
