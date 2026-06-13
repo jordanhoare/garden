@@ -27,11 +27,8 @@
 - On **climate change**, the Coalition proposes a **$10 billion cut in climate programs**, redirecting those resources toward **national defense** and economic stimulus measures, including **small business tax cuts**. This reduction would represent **4% of the climate program budget** and reallocate funding to **national security**. ([source](https://www.theguardian.com/australia-news/live/2025/may/01/australia-election-2025-live-anthony-albanese-peter-dutton-campaign-policies-economy-inflation-cost-of-living-coalition-labor-ntwnfb))
 - The **fiscal plan** includes a **$14 billion improvement** in the **federal budget deficit** over four years and a **$40 billion reduction** in gross national debt by 2030. These savings will come from **public sector wage cuts**, **foreign aid reductions**, and other budget cuts aimed at reducing government spending. ([source](https://www.theguardian.com/australia-news/live/2025/may/01/australia-election-2025-live-anthony-albanese-peter-dutton-campaign-policies-economy-inflation-cost-of-living-coalition-labor-ntwnfb))
 
----
-
 ## Observations
 
 - The **Greens** advocate for a larger, progressive taxation system, focusing on wealth redistribution and funding social programs like universal healthcare and housing, with significant investment in renewable energy. Their fiscal policy includes a reallocation of funds from fossil fuel subsidies towards green infrastructure.
 - **Labor** prioritizes tax cuts for the middle class while increasing spending on healthcare and renewable energy programs. Their plan includes a notable increase in public spending, financed through higher taxes on corporations and the wealthy.
 - The **Coalition** focuses on middle-class tax relief, investing in nuclear energy, and expanding mental health services. They are aiming for fiscal conservatism by cutting public sector jobs, defense spending, and reducing climate-related funding.
-- **Differences in energy policy** are stark, with the Greens and Labor advocating for a transition to renewable energy, while the Coalition supports nuclear energy alongside fossil fuel expansion.

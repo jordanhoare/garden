@@ -31,5 +31,4 @@ Amulet: https://www.pathofexile.com/trade/search/League/zQjaJQLu4
 
 https://www.poewiki.net/wiki/Cospri%27s_Will
 https://www.poewiki.net/wiki/Shadowstitch
-
 https://www.poewiki.net/wiki/The_Balance_of_Terror
