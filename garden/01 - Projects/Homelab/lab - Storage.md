@@ -1,6 +1,6 @@
 ## Context
 
-Storage for a 3-node bare-metal Kubernetes homelab running on [Beelink SER9 Pro H255](https://www.amazon.com.au/dp/B0G4V467WH) nodes (32GB RAM, dual M.2 PCIe 4.0 slots). Full resource requirements are in [[lab - Compute]].
+Storage for a 3-node bare-metal Kubernetes homelab running on [Beelink SER9 Pro H255](https://www.amazon.com.au/dp/B0G4V467WH) nodes (32GB RAM, dual M.2 PCIe 4.0 slots). Full resource requirements in [[lab - Compute]].
 
 Primary motivation is **deep learning of distributed storage fundamentals** — not just getting PVCs working. Target career path is senior/staff platform/SRE engineering where understanding storage at the systems level matters more than familiarity with any specific product.
 
@@ -70,7 +70,7 @@ Each SER9 Pro has dual M.2 PCIe 4.0 slots. Proper I/O isolation between OS and C
 
 |Pool|Type|Replication|Purpose|
 |---|---|---|---|
-|rbd-pool|Replicated, size=3, min_size=2|3× across hosts|Block PVCs|
+|rbd-pool|Replicated, size=3, min_size=2|3× across hosts|Block PVCs (Postgres, Keycloak, Prometheus, etc.)|
 |rgw-pool|Replicated, size=3, min_size=2|3× across hosts|RadosGW S3-compatible object storage|
 
 CRUSH rule: `chooseleaf host` — replicas on different physical nodes. Rook configures this by default.
@@ -95,31 +95,30 @@ CRUSH rule: `chooseleaf host` — replicas on different physical nodes. Rook con
 |1 node returns|3 hosts available|normal|**backfills automatically, zero intervention**|
 |2 nodes down|1 copy on 1 host|**blocked**|stalls until a node returns|
 
-The degraded window lasts until the failed node returns. Risk of coincident second failure is mitigated by UPS and negligible for independent hardware failures. Adding a 4th node (see [[lab - Compute]] upgrade path) eliminates this — Ceph rebuilds immediately.
+Degraded window lasts until the failed node returns. Risk of coincident second failure mitigated by UPS. Adding a 4th node (see [[lab - Compute]] upgrade path) eliminates this — Ceph rebuilds immediately.
 
 ## Backup Strategy
 
-**Backing up to the same Ceph cluster is not a backup.** Cluster-level disaster (fire, surge, 2-node failure) = everything gone.
+**Backing up to the same Ceph cluster is not a backup.** Cluster-level disaster = everything gone.
 
-### Backup Layers
+### Backup Tools
 
-|What|How|Target|Frequency|
-|---|---|---|---|
-|**etcd**|`talosctl etcd snapshot`|off-cluster S3|daily + before upgrades|
-|**Postgres (CloudNativePG)**|continuous WAL archiving + base backups|RadosGW **+ off-cluster S3**|WAL: continuous. Base: daily.|
-|**1Password secrets**|managed by 1Password cloud|no local backup needed|—|
-|**Prometheus TSDB**|rebuildable — scrape targets still exist|no backup needed|—|
-|**Loki**|rebuildable — logs are ephemeral|no backup needed|—|
-|**Grafana dashboards**|in Git via Flux|Git repo|every commit|
-|**Flux cluster state**|Git is source of truth|GitHub|inherent|
-|**Talos machineconfigs**|Git|GitHub|inherent|
+|Tool|What it backs up|How|
+|---|---|---|
+|**[CloudNativePG](https://cloudnative-pg.io/)**|Postgres databases|continuous WAL archiving + daily base backups to RadosGW **and** Cloudflare R2|
+|**[Volsync](https://volsync.readthedocs.io/)**|all other PVCs (Prometheus, Grafana, Keycloak, 1Password Connect)|snapshots PVCs, replicates to R2 on schedule|
+|**`talosctl etcd snapshot`**|etcd|daily + before upgrades, to R2|
+|**Git (Flux)**|cluster state, Grafana dashboards, Talos machineconfigs|inherent — Git is source of truth|
+|**1Password cloud**|secrets|managed by 1Password, no local backup needed|
+
+Volsync complements CloudNativePG: CNPG handles Postgres-specific backup (WAL + PITR), Volsync handles generic PVC backup for everything else. Together they cover all stateful data.
 
 ### Off-Cluster Backup Target
 
-|Provider|Free tier|Paid|Notes|
-|---|---|---|---|
-|**Cloudflare R2**|10 GB, no egress fees|$0.015/GB/month|best for restores — no egress charges|
-|Backblaze B2|10 GB|$0.005/GB/month|cheapest raw storage|
+|Provider|Free tier|Notes|
+|---|---|---|
+|**Cloudflare R2**|10 GB, no egress fees|best for restores — no egress charges|
+|Backblaze B2|10 GB|cheapest raw storage|
 
 Homelab generates <10GB backup data. **Cloudflare R2 free tier** covers it indefinitely.
 
@@ -132,11 +131,11 @@ Homelab generates <10GB backup data. **Cloudflare R2 free tier** covers it indef
 |Base backups|RadosGW + Cloudflare R2|daily, stored as S3 objects|
 |PITR|restore from base backup + replay WAL|block + object working together in one recovery flow|
 
-The interesting learning intersection: during PITR, CloudNativePG provisions a new block PVC (Ceph RBD), pulls a base backup from object storage (RadosGW/R2), and replays WAL on top. Block and object storage in a single workflow. Secrets for S3 credentials managed via 1Password + ESO — see [[lab - Security]].
+S3 credentials for RadosGW and R2 managed via 1Password + ESO — see [[lab - Security]].
 
 ## Capacity Planning (3 × 1TB OSD)
 
-||Value|
+| |Value|
 |---|---|
 |Raw capacity|3 TB|
 |Usable (3× replication)|~1 TB|
@@ -147,6 +146,7 @@ The interesting learning intersection: during PITR, CloudNativePG provisions a n
 ## Consequences
 
 - Ceph from day one = harder to operate initially. Misconfigurations can cause data loss. Acceptable — it's a lab.
-- RadosGW provides on-cluster S3 for Loki and CloudNativePG WAL. Off-cluster backup to R2 is essential for anything that matters.
-- Dual M.2 = OS and Ceph properly isolated. OSD drive failure doesn't affect the OS.
+- RadosGW provides on-cluster S3 for Loki and CloudNativePG WAL. Off-cluster R2 backup essential for anything that matters.
+- Volsync covers PVC backup for non-Postgres stateful workloads.
+- Dual M.2 = OS and Ceph properly isolated. OSD failure doesn't affect OS.
 - 4th node adds a 4th OSD (raw → 4TB, ~1.3TB usable) and enables automatic self-healing.

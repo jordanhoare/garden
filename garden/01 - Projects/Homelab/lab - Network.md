@@ -1,6 +1,6 @@
 ## Context
 
-Network infrastructure for a 3-node bare-metal Kubernetes homelab. This document structures decisions as: threat model first, then architecture that addresses it.
+Network infrastructure for a 3-node bare-metal Kubernetes homelab. Structured as: threat model → decisions → implementation.
 
 ### Requirements
 
@@ -11,7 +11,7 @@ Network infrastructure for a 3-node bare-metal Kubernetes homelab. This document
 5. Trusted user access to self-hosted apps without VPN or cluster credentials
 6. Router-level [ProtonVPN](https://protonvpn.com/) — ISP sees only encrypted tunnel traffic
 7. Self-hosted GitHub Actions runners — CI compute stays local
-8. Blast radius of any compromised service contained — see [[lab - Security]] for cluster-internal containment
+8. Cluster-internal blast radius containment — see [[lab - Security]]
 
 ## Threat Model
 
@@ -33,7 +33,7 @@ Network infrastructure for a 3-node bare-metal Kubernetes homelab. This document
 |Workstation (VLAN 30)|**yes — 6443, 50000**|no|no|—|
 |Lab node (VLAN 40)|same VLAN|no|no|no|
 
-For cluster-internal blast radius analysis (RCE, container escape, pod-level containment), see [[lab - Security]].
+For pod-level blast radius (RCE, container escape, sidecar access), see [[lab - Security]].
 
 ### Key Risks → Solutions
 
@@ -43,7 +43,7 @@ For cluster-internal blast radius analysis (RCE, container escape, pod-level con
 |Workstation compromise → cluster access|wired-only VLAN 30, credentials encrypted at rest|
 |ISP traffic analysis|ProtonVPN at router level|
 |Trusted users need app access|Cloudflare Access — per-app, per-identity|
-|ARC runners accessing cluster internals|dedicated namespace, deny-all NetworkPolicy, ephemeral pods|
+|ARC runners accessing cluster internals|dedicated namespace, deny-all NetworkPolicy — see [[lab - Security]]|
 
 ## Decisions
 
@@ -55,7 +55,7 @@ For cluster-internal blast radius analysis (RCE, container escape, pod-level con
 |Friction|zero|SSH hop per session|
 |Cost|$0|~$100 (Raspberry Pi)|
 
-**Decision:** UCG Ultra's built-in [WireGuard](https://www.wireguard.com/). Places you on VLAN 30 with identical rules to wired workstation. No cluster dependency, no third-party control plane. Bastion worth adding later ([Google BeyondCorp](https://cloud.google.com/beyondcorp) pattern). [Tailscale](https://tailscale.com/) as NAT-traversal fallback.
+**Decision:** UCG Ultra's built-in [WireGuard](https://www.wireguard.com/). Places you on VLAN 30 with identical rules to wired workstation. No cluster dependency. Bastion as future learning exercise ([Google BeyondCorp](https://cloud.google.com/beyondcorp) pattern). [Tailscale](https://tailscale.com/) as NAT-traversal fallback.
 
 ### 2. Trusted User Access: Cloudflare Access (zero trust)
 
@@ -64,7 +64,7 @@ Trusted user (any device, anywhere) → app.your-domain.com
     → Cloudflare Access (email OTP / OAuth) → Tunnel → app pod
 ```
 
-No VPN, no credentials, no VLAN access. Managed as code via [Cloudflare Terraform provider](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/zero_trust_access_application) — adding/revoking access is a PR.
+No VPN, no credentials, no VLAN access. Managed as code via [Cloudflare Terraform provider](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/zero_trust_access_application).
 
 ### 3. ISP Privacy: ProtonVPN at Router Level
 
@@ -100,16 +100,34 @@ Internet → Cloudflare Edge (TLS/WAF/DDoS) → Access (identity gate)
 |Grafana|yes|Cloudflare Access|you only|
 |k8s API / Talos API / Ceph|**never**|mTLS, VLAN 30 only|—|
 
-Tunnel pod restricted by Cilium NetworkPolicy — see [[lab - Security]] for isolation details.
+Tunnel pod isolation via Cilium NetworkPolicy — see [[lab - Security]].
 
-### 5. ARC Runners: Ephemeral, Isolated
+### 5. DNS: Dual ExternalDNS
 
-[Actions Runner Controller](https://github.com/actions/actions-runner-controller) in a dedicated namespace. See [[lab - Security]] for NetworkPolicy and isolation details.
+Following the [onedr0p/home-ops](https://github.com/onedr0p/home-ops) pattern — two [external-dns](https://github.com/kubernetes-sigs/external-dns) instances:
+
+|Instance|Ingress class|Target|Purpose|
+|---|---|---|---|
+|external-dns (public)|`external`|Cloudflare DNS|public records (`app.your-domain.com` → Cloudflare Tunnel)|
+|external-dns (private)|`internal`|UCG Ultra (UniFi webhook)|private records (`grafana.lab.your-domain.com` → Cilium L2 IP)|
+
+Private DNS means services on Lab VLAN get proper names resolvable from the workstation (VLAN 30) without editing `/etc/hosts` or remembering IPs.
+
+|Layer|Resolver|
+|---|---|
+|Cluster-internal|CoreDNS|
+|VPN-wrapped VLANs|ProtonVPN tunnel DNS (prevents [DNS leaks](https://protonvpn.com/support/dns-leaks/))|
+|Work VLAN|ISP/corporate DNS|
+|Private (lab services)|UCG Ultra via external-dns UniFi webhook|
+|Public|Cloudflare DNS via external-dns|
+
+### 6. ARC Runners: Ephemeral, Isolated
+
+[Actions Runner Controller](https://github.com/actions/actions-runner-controller) in a dedicated namespace. Security details in [[lab - Security]].
 
 |Concern|Mitigation|
 |---|---|
 |Runner accesses cluster services|deny-all NetworkPolicy, internet-only egress|
-|Public PR triggers workflow|require approval for first-time contributors|
 |State leaks between jobs|ephemeral — fresh pod per job, destroyed after|
 |GitHub sees runner IP|exits via ProtonVPN|
 |Repo hosting|code on GitHub, CI runs locally|
@@ -158,23 +176,18 @@ Default: **deny all inter-VLAN.** Explicit allows only:
 |All → Internet|443, 80, 53|general internet|
 |**All other inter-VLAN**|**deny**|—|
 
-### DNS
-
-|Layer|Resolver|
-|---|---|
-|Cluster-internal|CoreDNS|
-|VPN-wrapped VLANs|ProtonVPN tunnel DNS (prevents [DNS leaks](https://protonvpn.com/support/dns-leaks/))|
-|Work VLAN|ISP/corporate DNS|
-|Public|Cloudflare DNS, automated via [external-dns](https://github.com/kubernetes-sigs/external-dns)|
-
 ### Cilium
 
 |Function|Role|
 |---|---|
 |CNI|pod networking, IPAM|
-|NetworkPolicy|per-app egress/ingress — see [[lab - Security]]|
+|NetworkPolicy|per-app egress/ingress — details in [[lab - Security]]|
 |L2 announcements|LoadBalancer IPs on Lab VLAN (replaces MetalLB)|
 |[Hubble](https://docs.cilium.io/en/stable/observability/hubble/)|flow logs, drops, latency → Grafana|
+
+### Istio — Skipped
+
+onedr0p uses Istio for L7 service mesh (mTLS between services, traffic management). Cilium already provides L7 observability via Hubble and has its own service mesh capabilities. Adding Istio alongside Cilium is significant complexity for marginal benefit at homelab scale. If service mesh becomes a learning goal later, Cilium's built-in mesh or Linkerd are lighter alternatives.
 
 ## Diagrams
 
@@ -227,7 +240,6 @@ graph TD
     Switch --- N1 & N2 & N3
     AP_Home -.- Phones
     AP_Work -.- WorkPC
-
     Router -.-|WireGuard\nUDP 51820| Internet
 
     style VLAN 10 - Home fill:#e8f5e9,stroke:#4caf50
@@ -242,7 +254,7 @@ graph TD
 flowchart LR
     subgraph Public Access
         User([Public User])
-        Partner([Trusted User])
+        Trusted([Trusted User])
     end
 
     subgraph Cloudflare
@@ -264,8 +276,8 @@ flowchart LR
 
     User -->|no auth| Edge --> Tunnel --> CFD --> Kromgo
     User -->|no auth| Edge --> Tunnel --> CFD --> Wiki
-    Partner -->|email OTP| Edge --> Access --> Tunnel --> CFD --> Chat
-    Partner -.->|blocked by\nNetworkPolicy| PG
+    Trusted -->|email OTP| Edge --> Access --> Tunnel --> CFD --> Chat
+    CFD -.->|blocked by\nNetworkPolicy| PG
     CFD -.->|blocked| Secrets
     CFD -.->|blocked| Ceph
 
@@ -298,7 +310,6 @@ flowchart LR
     Laptop -->|WireGuard\nUDP 51820| WG -->|placed on\nVLAN 30| WS
     WS -->|kubectl| API
     WS -->|talosctl| Talos
-
     Laptop -.->|no direct path| API
     Laptop -.->|no direct path| Talos
 ```
@@ -308,6 +319,7 @@ flowchart LR
 - Four VLANs with default deny-all. Work machine airgapped via WiFi SSID. Lab unreachable from Home or Work.
 - ProtonVPN wraps Home, Mgmt, and Lab. ISP sees encrypted WireGuard only. Work exits direct.
 - Cloudflare Access gates trusted user access per-app — managed as Terraform in Git.
-- Public wiki and Kromgo via Tunnel with no inbound ports.
+- Dual ExternalDNS gives proper DNS names for both public (Cloudflare) and private (UCG Ultra) services.
+- Istio skipped — Cilium covers L7 observability and can add service mesh later if needed.
 - ARC runners ephemeral, namespace-isolated, internet-only egress.
 - Home IP hidden from ISP (ProtonVPN), public visitors (Cloudflare), and GitHub (runners via ProtonVPN).

@@ -1,16 +1,17 @@
 ## Context
 
-Bare-metal Kubernetes homelab for learning enterprise cloud-native tooling. Rack fits max 6 mini PCs. Target: senior/staff platform engineer roles at companies like Google, Block, or ByteDance.
+Bare-metal Kubernetes homelab for learning enterprise cloud-native tooling. Rack fits max 6 mini PCs. Target: senior/staff platform engineer roles.
 
 ### Target Stack
 
 - **Platform:** Talos Linux, Cilium, FluxCD, cert-manager
-- **Identity & Secrets:** Keycloak, 1Password + External Secrets Operator
+- **Identity & Secrets:** Keycloak, 1Password + External Secrets Operator (see [[lab - Security]])
 - **Observability:** Prometheus, Grafana, Loki, Gatus
-- **Operations:** GitHub Actions Runner Controller
-- **Networking:** Cloudflare DNS + Tunnel, Ubiquiti UCG Ultra + USW Lite 8 PoE
-- **Storage:** Rook+Ceph (block + object). See [[lab - Storage]].
-- **Security:** Falco, Kyverno, Trivy. See [[lab - Security]].
+- **Operations:** GitHub Actions Runner Controller, Renovate
+- **Networking:** Cloudflare DNS + Tunnel, Ubiquiti UCG Ultra + USW Lite 8 PoE (see [[lab - Network]])
+- **Storage:** Rook+Ceph (block + object), CloudNativePG, Volsync (see [[lab - Storage]])
+- **Security:** Falco, Kyverno, Trivy (see [[lab - Security]])
+- **Extras:** Spegel (cluster-local OCI mirror), external-dns (dual: Cloudflare + UniFi)
 
 ### Requirements
 
@@ -28,19 +29,19 @@ Estimated steady-state RAM across the cluster:
 |Component|RAM|
 |---|---|
 |Talos + kubelet + Cilium (per node)|~2 GB|
-|Ceph (OSDs + MON + MGR)|~16–20 GB total|
+|Ceph (OSDs + MON + MGR + RadosGW)|~18–22 GB total|
 |Prometheus (HA) + Grafana + Loki|~8–10 GB|
 |Keycloak (HA) + 1Password Connect + ESO|~3–4 GB|
-|Flux, cert-manager, Gatus, ARC, Tunnel|~2–3 GB|
-|Security tooling (Falco, Kyverno)|~1.5–2 GB|
-|**Total with Ceph**|**~31–35 GB**|
+|Flux, cert-manager, Gatus, ARC, Tunnel, external-dns|~2–3 GB|
+|Security (Falco, Kyverno) + Spegel + Volsync|~2–3 GB|
+|**Total**|**~35–40 GB**|
 
 N-1 failure scenario is the critical test — all evicted pods reschedule, Ceph recovery increases memory pressure at the exact moment capacity drops.
 
 ### Why 32GB per node
 
-- 4 × 16GB = 64 GB total, ~42 GB allocatable on N-1. Only 4–6 GB headroom with Ceph — OOM risk during recovery + ARC spikes.
-- 3 × 32GB = 96 GB total, ~56 GB allocatable on N-1. ~18–20 GB headroom with Ceph — comfortable.
+- 4 × 16GB = 64 GB total, ~42 GB allocatable on N-1. Only ~2–7 GB headroom — OOM risk during Ceph recovery + ARC spikes.
+- 3 × 32GB = 96 GB total, ~56 GB allocatable on N-1. ~16–21 GB headroom — comfortable.
 - DDR4 16GB SO-DIMMs are $220+ in AU. Upgrading 4 refurb nodes to 32GB ($880) costs more than buying 32GB soldered.
 
 ## Options Evaluated
@@ -76,7 +77,7 @@ Ruled out. Most are 4C despite "Ryzen 5" branding, soldered low RAM, single M.2,
 
 - Barebones need kitting: [Crucial DDR5 16GB $259](https://www.amazon.com.au/Crucial-5600MHz-5200MHz-4800MHz-CT16G56C46S5/dp/B0BLTGMCB7) + [fanxiang 256GB NVMe $68](https://www.amazon.com.au/fanxiang-S500-Pro-Internal-Compatible/dp/B0B55SWRCY) = $327/node
 - Best hardware but fleet costs $2,400–3,800
-- UM690L closest competitor to the eventual winner but single M.2 (no Ceph OSD isolation), 6nm Zen 3+ (~19% slower), 1-year warranty
+- UM690L closest competitor but single M.2 (no Ceph OSD isolation), 6nm Zen 3+ (~19% slower), 1-year warranty
 
 ### Beelink
 
@@ -93,7 +94,7 @@ Ruled out. Most are 4C despite "Ryzen 5" branding, soldered low RAM, single M.2,
 
 ### 3 vs 4 Nodes
 
-| |3 nodes|4 nodes|
+||3 nodes|4 nodes|
 |---|---|---|
 |etcd quorum on N-1|2/3 — holds|3/4 — holds|
 |Ceph on N-1|data available, can't rebuild until node returns|self-heals immediately|
@@ -101,7 +102,7 @@ Ruled out. Most are 4C despite "Ryzen 5" branding, soldered low RAM, single M.2,
 |Degraded window risk|second failure = potential data loss (mitigate with UPS)|second failure = degraded only|
 |Cost (SER9 Pro)|$2,384|$3,178|
 
-Ceph self-heals automatically on node return — see [[lab - Storage]] for details.
+Ceph self-heals automatically on node return — see [[lab - Storage]] for replication details.
 
 Proxmox rejected: not GitOps-native, two management planes, two update paths, virtualisation overhead with no benefit for Talos.
 
@@ -130,9 +131,9 @@ All three nodes as schedulable control plane. Dual M.2 slots enable proper Ceph 
 
 ### Upgrade Path
 
-| Phase                            | Cost      |
-| -------------------------------- | --------- |
-| Day one — 3 × SER9 Pro           | $2,384    |
-| Ceph OSD drives — 3 × 512GB NVMe | ~$300     |
-| 4th node (Ceph self-healing)     | ~$795     |
-| eGPU dock for LLM inference      | ~$150–250 |
+|Phase|Cost|
+|---|---|
+|Day one — 3 × SER9 Pro|$2,384|
+|Ceph OSD drives — 3 × 512GB NVMe|~$300|
+|4th node (Ceph self-healing)|~$795|
+|eGPU dock for LLM inference|~$150–250|
