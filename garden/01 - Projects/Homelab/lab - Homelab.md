@@ -1,11 +1,5 @@
 On technology as a contemplative practice ([[2025-05-01]])
 
-Talos, Kubernetes, Proxmox with OpenTofu
-https://blog.stonegarden.dev/articles/2024/08/talos-proxmox-tofu/#main-course
-https://github.com/vehagn/homelab
-
-**6-node M910Q cluster with 16GB RAM per node**
-
 #### Modem
 
 [NBN CM8200](https://www.nbnco.com.au/content/dam/nbnco2/documents/1730118_HFC_Setup_Guide_180x130mm_PAY%20TV_1.0_ONLINE.pdf)
@@ -61,18 +55,3 @@ Price: [$199.00](https://www.amazon.com.au/gp/product/B0C6BPKXDF?smid=ANEGB3WVEV
 
 - UniFi Controller
 - OpenTelemetry ?
-
-```
-infrastructure/
-├── talos/
-├── kubernetes/
-├── flux/
-├── apps/
-│   ├── keycloak/
-│   ├── kafka/
-│   ├── airflow/
-│   ├── grafana/
-│   ├── vault/
-│   └── .../
-└── clusters/
-```
