@@ -1,5 +1,5 @@
 [tools]
-node = "22"
+node = "24"
 
 [tasks.setup]
 description = "Bootstrap a new machine (run once after clone)"
